@@ -32,14 +32,10 @@ const GlobalStyles = createGlobalStyle`
         font-size: 100%;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
-    ol, ul {
+    ol,ul {
         list-style: none;
         display: block;
         list-style-type: none;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
     }
     header {
         padding: 40px 15px;

@@ -8,6 +8,7 @@ export const MenuLinksWrapper = styled.nav`
 export const MenuLinksList = styled.ul`
     color: #ececec;
     font-size: 13px;
+    height: 2rem;
     padding: 0 5rem 0;
     display: flex;
     max-width: 100rem;
@@ -19,7 +20,7 @@ export const MenuLinksList = styled.ul`
     }
 
     #ul-tema{
-        padding: .5rem;
+        padding: .3rem;
         width: 22rem;
 
 
@@ -27,7 +28,7 @@ export const MenuLinksList = styled.ul`
 
 export const MenuLinksItem = styled.li`
     color: #fff;
-    padding: .5rem;
+    padding: .3rem;
     float: right;
     display: list-item;
     transition: all ease 0.5s;
