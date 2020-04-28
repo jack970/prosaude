@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `PROSAUDE`,
     description: `Programa de assistência aos servidores de Catalão.`,
+    address: 'Travessa Píres de Matos, 50 - Amambai, Campo Grande - MS, Brasil CEP: 79005-060',
     author: `@gatsbyjs`,
   },
   plugins: [

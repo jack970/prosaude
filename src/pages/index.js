@@ -1,8 +1,7 @@
 import React from "react"
-import { Link } from "gatsby"
 
+import { MDBRow, MDBCol, MDBCardTitle } from 'mdbreact'
 import Layout from "../components/Layout/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 import Cards from "../components/Cards"
 import CarouselPage from "../components/CarouselAnuncios"
@@ -11,14 +10,33 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <CarouselPage/>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Cards />
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <MDBRow style={{marginTop: '5rem'}}>
+      <MDBCol>
+        <MDBCardTitle style={{fontWeight: '500'}}>SERVIDORA MUNICIPAL</MDBCardTitle>
+        <hr style={{borderTop: '2px solid #FD0'}} />
+      </MDBCol>
+    </MDBRow>
+    <Cards 
+        title='Título do Card.'
+        description='Descrição do Card.'/>
+    <MDBRow style={{marginTop: '5rem'}}>
+      <MDBCol>
+        <MDBCardTitle style={{fontWeight: '500'}}>SERVIDORA MUNICIPAL</MDBCardTitle>
+        <hr style={{borderTop: '2px solid #FD0'}} />
+      </MDBCol>
+    </MDBRow>
+    <Cards 
+        title='Título do Card.'
+        description='Descrição do Card.'/>
+    <MDBRow style={{marginTop: '5rem'}}>
+      <MDBCol>
+        <MDBCardTitle style={{fontWeight: '500'}}>SERVIDORA MUNICIPAL</MDBCardTitle>
+        <hr style={{borderTop: '2px solid #FD0'}} />
+      </MDBCol>
+    </MDBRow>
+    <Cards 
+        title='Título do Card.'
+        description='Descrição do Card.'/>
   </Layout>
 )
 

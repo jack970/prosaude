@@ -7,6 +7,7 @@ import HeaderNav from "../HeaderNav"
 import SectionNav from '../SectionNav'
 import GlobalStyles from "../../Styles/global"
 import NavBar from '../NavBar'
+import Footer from "../Footer"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -15,6 +16,7 @@ const Layout = ({ children }) => {
         siteMetadata {
           title
           description
+          address
         }
       }
     }
@@ -38,12 +40,12 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
       </div>
+      <Footer 
+      title={data.site.siteMetadata.title}
+      description={data.site.siteMetadata.description}
+      address = {data.site.siteMetadata.address}
+      />
     </>
   )
 }
