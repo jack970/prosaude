@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 import { Link } from 'gatsby'
 
 export const MenuLinksWrapper = styled.nav`
@@ -17,12 +18,28 @@ export const MenuLinksList = styled.ul`
     #title {
         float: left;
         line-height: 1.6rem;
+
+        ${media.lessThan('large')`
+        float:none;
+        text-align: center;
+        `}
     }
 
     #ul-tema{
         padding: .3rem;
         width: 22rem;
 
+        ${media.lessThan('large')`
+        width: 100%;
+        `}
+    }
+    
+    .list-title {
+        display: flex;
+        ${media.lessThan('large')`
+            display: block;
+        `}
+    }
 
 `
 
@@ -33,12 +50,6 @@ export const MenuLinksItem = styled.li`
     display: list-item;
     transition: all ease 0.5s;
     line-height: 0.3rem;
-
-    &:hover {
-        background:var(--black);
-        color: var(--white);
-    }
-
 `
 
 export const MenuLinksIcon = styled.i`
@@ -61,4 +72,8 @@ export const MenuLinksLink = styled(Link)`
 export const MenuLinksGroup = styled.div`
     width: -webkit-fill-available;
 
+    ${media.lessThan('large')`
+        display: none
+    
+    `}
 `
