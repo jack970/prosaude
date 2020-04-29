@@ -1,60 +1,34 @@
-import React, { Component } from "react";
-import {
-MDBNavbar, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,
-MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
-} from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, { useState } from "react";
+import {MDBNavbar, MDBNavbarNav, MDBNavItem, MDBNavbarToggler, MDBCollapse, MDBFormInline} from "mdbreact";
+import { Link } from 'gatsby'
 
-class NavBar extends Component {
-state = {
-  isOpen: false
-};
+const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-toggleCollapse = () => {
-  this.setState({ isOpen: !this.state.isOpen });
-}
 
-render() {
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <Router>
-      <MDBNavbar color="elegant-color" dark text='center' expand="md" >
-        <MDBNavbarToggler onClick={this.toggleCollapse} />
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-          <MDBNavbarNav center='true'>
-            <MDBNavItem active>
-              <MDBNavLink to="#!">Home</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="#!">Features</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="#!">Pricing</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="#!">Features</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="#!">Pricing</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBDropdown>
-                <MDBDropdownToggle nav caret>
-                  <span className="mr-2">Dropdown</span>
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavItem>
-          </MDBNavbarNav>
-        </MDBCollapse>
-      </MDBNavbar>
-    </Router>
-    );
-  }
+    <MDBNavbar color="elegant-color" dark text='center' expand="md" >
+      <MDBNavbarToggler onClick={toggle} />
+      <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
+        <MDBNavbarNav center='true'>
+          <MDBNavItem active>
+            <Link to='#!'>Link</Link>
+          </MDBNavItem>
+        </MDBNavbarNav>
+        <MDBNavbarNav right>
+          <MDBNavItem>
+            <MDBFormInline waves>
+              <div className="md-form my-0">
+                <input className="form-control mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Search" />
+              </div>
+            </MDBFormInline>
+          </MDBNavItem>
+        </MDBNavbarNav>
+      </MDBCollapse>
+    </MDBNavbar>
+  )
 }
 
 export default NavBar;
