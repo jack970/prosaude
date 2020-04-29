@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import {MDBNavbar, MDBNavbarNav, MDBNavItem, MDBNavbarToggler, MDBCollapse, MDBFormInline} from "mdbreact";
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 
 const NavBar = () => {
+  const { site } = useStaticQuery(graphql`
+    query SiteHeaderQuery {
+      site {
+        siteMetadata {
+          menuHeader {
+            link
+            label
+          }
+        }
+      }
+    }
+  `)
+  
+    
+  const menuLink = site.siteMetadata
   const [isOpen, setIsOpen] = useState(false);
-
-
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -13,9 +26,11 @@ const NavBar = () => {
       <MDBNavbarToggler onClick={toggle} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav center='true'>
-          <MDBNavItem active>
-            <Link to='#!'>Link</Link>
-          </MDBNavItem>
+        { menuLink.menuHeader.map((menu) => (
+            <MDBNavItem>
+              <Link to={menu.link}>{menu.label}</Link>
+            </MDBNavItem>
+          ))}
         </MDBNavbarNav>
         <MDBNavbarNav right>
           <MDBNavItem>

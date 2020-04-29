@@ -4,6 +4,32 @@ module.exports = {
     description: `Programa de assistência aos servidores de Catalão.`,
     address: 'Travessa Píres de Matos, 50 - Amambai, Campo Grande - MS, Brasil CEP: 79005-060',
     author: `@gatsbyjs`,
+    menuHeader: [
+      {
+        link: '/institucional',
+        label: 'Institucional'
+      },
+      {
+        link: '/noticias',
+        label: 'Notícias e Novidades'
+      },
+      {
+        link: '/servicos',
+        label: 'Serviços'
+      },
+      {
+        link: '/publicacoes',
+        label: 'Publicações'
+      },
+      {
+        link: '/transparencia',
+        label: 'Transparência'
+      },
+      {
+        link: '/ouvidoria',
+        label: 'Ouvidoria'
+      },
+    ]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
