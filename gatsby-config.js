@@ -24,11 +24,7 @@ module.exports = {
       {
         link: '/transparencia',
         label: 'Transparência'
-      },
-      {
-        link: '/ouvidoria',
-        label: 'Ouvidoria'
-      },
+      }
     ]
   },
   plugins: [

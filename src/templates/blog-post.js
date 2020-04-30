@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import SectionNoticias from '../components/AllNoticiasSection'
 import media from 'styled-media-query'
 import kebabCase from "lodash/kebabCase"
+import {MDBBadge} from 'mdbreact'
 
 export const Divisao = styled.div`
     display: flex;
@@ -34,7 +35,7 @@ const BlogPost = ({data, pageContext}) => {
                             <strong>Categorias:</strong>&nbsp;{` `}
                             {post.frontmatter.tags.map((cat, i) => (
                                 <Link to={`/${kebabCase(cat)}`} key={i}>
-                                    <strong>{cat}{` `}&nbsp;</strong>
+                                    <MDBBadge color="warning">{cat}</MDBBadge>&nbsp;
                                 </Link>
                             ))}
                             <br/>

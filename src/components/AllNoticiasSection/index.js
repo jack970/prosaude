@@ -10,7 +10,7 @@ export const Col = styled.div`
     margin-left: 4rem;
 
     ${media.lessThan('765px')`
-        width: auto;
+        width: 100%;
         margin-left: 0;
     `}
 `
