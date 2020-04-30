@@ -10,6 +10,7 @@ import media from 'styled-media-query'
 
 export const Divisao = styled.div`
     display: flex;
+    justify-content: space-between;
 
     ${media.lessThan('765px')`
         display:block;
@@ -28,7 +29,9 @@ const ListTagsPosts = props => {
             description='Posts'/>
             <Divisao>
                 <DivPost>
-                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'
+                        style={{paddingLeft: '0'}}
+                    >
                             <h2 style={{fontWeight: '500'}}>{tag}</h2>
                             <hr style={{borderTop: '2px solid #FD0'}} />
                     </div>

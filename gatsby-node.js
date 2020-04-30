@@ -76,7 +76,7 @@ exports.createPages = async ({ graphql, actions }) => {
             })
         })
 
-        const postsPerPage = 2
+        const postsPerPage = 6
 
         tags.forEach((tag, i) => {
           const link = `/${_.kebabCase(tag.fieldValue)}`

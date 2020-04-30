@@ -22,24 +22,20 @@ const NavBar = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <MDBNavbar color="elegant-color" dark text='center' expand="md" >
+    <MDBNavbar color="" dark text='center' expand="md">
       <MDBNavbarToggler onClick={toggle} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav center='true'>
         { menuLink.menuHeader.map((menu, i) => (
             <MDBNavItem key={i}>
-              <Link className="text-light" to={menu.link} style={{fontWeight: "700"}}>{menu.label}</Link>
+              <Link className="text-dark" to={menu.link} style={{fontWeight: "700"}}>{menu.label}</Link>
             </MDBNavItem>
           ))}
         </MDBNavbarNav>
         <MDBNavbarNav right>
-          <MDBNavItem>
-            <MDBFormInline waves>
-              <div className="md-form my-0">
-                <input className="form-control mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Search" />
-              </div>
-            </MDBFormInline>
-          </MDBNavItem>
+          <MDBFormInline className="md-form mr-auto m-0">
+            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+          </MDBFormInline>
         </MDBNavbarNav>
       </MDBCollapse>
     </MDBNavbar>

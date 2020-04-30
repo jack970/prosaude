@@ -43,10 +43,10 @@ const BlogPost = ({data, pageContext}) => {
                     <S.MainContent>
                         <div dangerouslySetInnerHTML={{__html: post.html}}></div>
                     </S.MainContent>
+                    <RecomendPosts next={next} previous={previous}/>
                 </DivPost>
                 <SectionNoticias />
             </Divisao>
-            <RecomendPosts next={next} previous={previous}/>
         </Layout>
     )
 }

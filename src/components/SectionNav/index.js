@@ -1,14 +1,35 @@
 import React from "react";
-import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView } from
+import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBCarouselCaption } from
 "mdbreact";
+import { useStaticQuery, graphql, Link} from 'gatsby'
 
 const SectionPage = () => {
+  const data = useStaticQuery(graphql`
+    query allPosts {
+      allMarkdownRemark(limit: 3, sort: {fields: frontmatter___date, order: DESC}) {
+        edges {
+          node {
+            excerpt(pruneLength: 50)
+            frontmatter {
+              thumbnail
+              date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+              title
+            }
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }    
+  `)
+  
   return (
       <MDBCarousel
         activeItem={1}
-        length={1}
-        showControls={false}
-        showIndicators={false}
+        length={3}
+        showControls={true}
+        showIndicators={true}
         className="z-depth-1"
         slide
         style={{
@@ -18,16 +39,26 @@ const SectionPage = () => {
           }}
       >
         <MDBCarouselInner>
-          <MDBCarouselItem itemId="1">
-            <MDBView>
-              <img
-                className="d-block w-100 h-40"
-                style={{height: '15rem'}}
-                src="http://www.campogrande.ms.gov.br/impcg/wp-content/uploads/2017/11/campogrande-drone-1.jpg"
-                alt="First slide"
-              />
-            </MDBView>
-          </MDBCarouselItem>
+          {data.allMarkdownRemark.edges.map(({node}, i) => (
+            <MDBCarouselItem itemId={i + 1} key={i}>
+              <Link to={node.fields.slug}>
+                <MDBView style={{cursor: 'pointer'}}>
+                    <img
+                      className="d-block w-100"
+                      src={node.frontmatter.thumbnail}
+                      alt={node.frontmatter.title}
+
+                      style={{height: '15rem'}}
+                    />
+                </MDBView>
+                <MDBCarouselCaption>
+                  <h3 className="h4">{node.frontmatter.title}</h3>
+                  <h4 className='h4-responsive'>{node.excerpt}</h4>
+                  <p>{node.frontmatter.date}</p>
+                </MDBCarouselCaption>
+              </Link>
+            </MDBCarouselItem>
+          ))}
         </MDBCarouselInner>
       </MDBCarousel>
   );

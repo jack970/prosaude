@@ -26,11 +26,11 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyles />
       <HeaderNav title={data.site.siteMetadata.title}/>
-      <NavBar />
       <InnerHeader 
       title={data.site.siteMetadata.title}
       description={data.site.siteMetadata.description}
         />
+      <NavBar />
       <SectionNav />
       <div
         style={{
