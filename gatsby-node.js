@@ -1,5 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const path = require("path")
+const _ = require("lodash")
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -54,12 +55,14 @@ exports.createPages = async ({ graphql, actions }) => {
         tagsGroup: allMarkdownRemark {
           group(field: frontmatter___tags) {
             fieldValue
+            totalCount
           }
         }
       }
       `
     ).then(result => {
         const posts = result.data.postRemark.edges
+        const tags = result.data.tagsGroup.group
 
         posts.forEach(({node, next, previous}) => {
             createPage ({
@@ -71,6 +74,29 @@ exports.createPages = async ({ graphql, actions }) => {
                     next: next
                 }
             })
+        })
+
+        const postsPerPage = 2
+
+        tags.forEach((tag, i) => {
+          const link = `/${_.kebabCase(tag.fieldValue)}`
+          const numPages = Math.ceil( tag.totalCount / postsPerPage)
+
+          Array.from({
+            length: numPages,
+          }).forEach((_, i) => {
+            createPage ({
+              path: i === 0 ? link : `${link}/page/${i + 1}`,
+              component: path.resolve('./src/templates/list-post-tag.js'),
+              context: {
+                tag: tag.fieldValue,
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+                numPages,
+                currentPage: i + 1
+              }
+            })
+          })
         })
     })
   }

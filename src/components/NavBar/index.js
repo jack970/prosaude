@@ -26,9 +26,9 @@ const NavBar = () => {
       <MDBNavbarToggler onClick={toggle} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav center='true'>
-        { menuLink.menuHeader.map((menu) => (
-            <MDBNavItem>
-              <Link to={menu.link}>{menu.label}</Link>
+        { menuLink.menuHeader.map((menu, i) => (
+            <MDBNavItem key={i}>
+              <Link className="text-light" to={menu.link} style={{fontWeight: "700"}}>{menu.label}</Link>
             </MDBNavItem>
           ))}
         </MDBNavbarNav>

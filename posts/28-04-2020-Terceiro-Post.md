@@ -5,7 +5,7 @@ date: "2019-04-27"
 thumbnail: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%28131%29.jpg'
 tags: 
     - Notícias
-    - Category
+    - Publicações
 ---
 
 # Testando meu post

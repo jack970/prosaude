@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 const Cards = ({title, description, thumbnail, slug, date}) => {
 
   return (
-      <MDBCol md="4">
+      <MDBCol md="4" style={{marginBottom: '2rem'}}>
         <MDBCard>
         <Link to={slug}>
           <MDBCardImage

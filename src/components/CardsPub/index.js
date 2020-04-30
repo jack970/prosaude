@@ -8,7 +8,7 @@ const CardsPub = () => {
     const data = useStaticQuery(graphql`
         query CardsPub {
             allMarkdownRemark(limit: 3, 
-            filter: {frontmatter: {tags: {eq: "Category"}}}
+            filter: {frontmatter: {tags: {eq: "Publicações"}}}
             sort: {order: DESC, fields: [frontmatter___date]}
             ) {
             edges {

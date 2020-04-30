@@ -21,7 +21,7 @@ const IndexPage = ({data}) => {
         <hr style={{borderTop: '2px solid #FD0'}} />
       </MDBCol>
     </MDBRow>
-    <MDBRow>
+    <MDBRow >
         { postList.map(({node}, i) => (
           <Cards key={i}
           title={node.frontmatter.title}

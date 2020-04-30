@@ -6,7 +6,7 @@ const CardsTransparencia = () => {
     const data = useStaticQuery(graphql`
         query CardsTransparencia {
             allMarkdownRemark(limit: 2, 
-            filter: {frontmatter: {tags: {eq: "Category"}}}
+            filter: {frontmatter: {tags: {eq: "Serviços"}}}
             sort: {order: DESC, fields: [frontmatter___date]}
             ) {
             edges {
@@ -35,7 +35,7 @@ return (
     </MDBRow>
     <MDBRow>
       {cadsTransparencia.map(({node}, i) =>(
-        <MDBCol sm="6" key={i}>
+        <MDBCol sm="6" key={i} style={{marginBottom: '2rem'}}>
           <MDBCard>
             <MDBCardBody>
               <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>
