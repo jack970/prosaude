@@ -60,8 +60,11 @@ const SectionNoticias = () => {
             </div>
             {info.map(({node}, i) =>(
             <MDBCard style={{ marginBottom: '2rem' }} key={i}>
-                <Img className="img-fluid" fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
-                waves />
+                <Link to={node.fields.slug}>
+                    <Img className="img-fluid" 
+                    fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
+                    waves />
+                </Link>
                 <MDBCardBody>
                     <MDBCardText>{node.frontmatter.date}</MDBCardText>
                     <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>

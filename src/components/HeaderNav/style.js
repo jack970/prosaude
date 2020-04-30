@@ -17,7 +17,7 @@ export const MenuLinksList = styled.ul`
 
     #title {
         float: left;
-        line-height: 1.6rem;
+        line-height: 1.4rem;
 
         ${media.lessThan('large')`
         float:none;

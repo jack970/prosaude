@@ -16,15 +16,6 @@ const HeaderNav = ({title}) => (
                 </li>
             </div>
             <S.MenuLinksGroup>
-                <S.MenuLinksItem>
-                    <S.MenuLinksLink className="active" to='/'>Ouvidoria</S.MenuLinksLink>
-                </S.MenuLinksItem>
-                <S.MenuLinksItem>
-                    <S.MenuLinksLink className="active" to='/'>PMCG</S.MenuLinksLink>
-                </S.MenuLinksItem>
-                <S.MenuLinksItem>
-                    <S.MenuLinksLink className="active" to='/'>Cerimonial</S.MenuLinksLink>
-                </S.MenuLinksItem>
             </S.MenuLinksGroup>
         </S.MenuLinksList>
     </S.MenuLinksWrapper>

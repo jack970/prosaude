@@ -6,6 +6,7 @@ export const RecommendedWrapper = styled.section`
   border-top: 1px solid black;
   background: white;
   display: flex;
+  margin-bottom: 2rem;
 `
 
 export const RecommendedLink = styled(Link)`

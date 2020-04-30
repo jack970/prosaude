@@ -31,9 +31,10 @@ const BlogPost = ({data, pageContext}) => {
                 <DivPost>
                     <S.PostHeader>
                         <S.PostDate>
+                            <strong>Categorias:</strong>&nbsp;{` `}
                             {post.frontmatter.tags.map((cat, i) => (
                                 <Link to={`/${kebabCase(cat)}`} key={i}>
-                                    <strong><u>{cat}</u> &nbsp;</strong>
+                                    <strong>{cat}{` `}&nbsp;</strong>
                                 </Link>
                             ))}
                             <br/>

@@ -10,3 +10,5 @@ tags:
 
 # Testando meu post
 
+!["Alt text"](/assets/img/plantas.jpg)
+
