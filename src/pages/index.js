@@ -5,7 +5,6 @@ import { MDBRow, MDBCol } from 'mdbreact'
 import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
 import Cards from "../components/Cards"
-import CarouselPage from "../components/CarouselAnuncios"
 import CardsPub from "../components/CardsPub"
 import CardsTransparencia from "../components/CardsTransparencia"
 
@@ -14,7 +13,6 @@ const IndexPage = ({data}) => {
   return (
   <Layout>
     <SEO title="Home" />
-    <CarouselPage/> 
     <MDBRow style={{marginTop: '5rem'}}>
       <MDBCol>
         <h1 style={{fontWeight: '500'}}>Notícias</h1>
@@ -26,7 +24,7 @@ const IndexPage = ({data}) => {
           <Cards key={i}
           title={node.frontmatter.title}
           description={node.excerpt}
-          thumbnail={node.frontmatter.thumbnail}
+          thumbnail={node.frontmatter.thumbnail.childImageSharp.fluid}
           slug={node.fields.slug}
           date={node.frontmatter.date}
           />
@@ -50,7 +48,13 @@ export const PostListQuery = graphql`
         node {
           excerpt
           frontmatter {
-            thumbnail
+            thumbnail {
+              childImageSharp {
+                  fluid(maxWidth: 1080) {
+                      ...GatsbyImageSharpFluid_tracedSVG
+                  }
+              }
+            }
             date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
             title
             description

@@ -1,7 +1,8 @@
 import React from "react";
-import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBCarouselCaption } from
+import { MDBCarousel, MDBCarouselInner, MDBMask,MDBCarouselItem, MDBView, MDBCarouselCaption } from
 "mdbreact";
 import { useStaticQuery, graphql, Link} from 'gatsby'
+import Img from 'gatsby-image'
 
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
@@ -11,7 +12,13 @@ const SectionPage = () => {
           node {
             excerpt(pruneLength: 50)
             frontmatter {
-              thumbnail
+              thumbnail {
+                childImageSharp {
+                    fluid(maxWidth: 1000) {
+                        ...GatsbyImageSharpFluid_tracedSVG
+                    }
+                }
+            }
               date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
               title
             }
@@ -43,17 +50,17 @@ const SectionPage = () => {
             <MDBCarouselItem itemId={i + 1} key={i}>
               <Link to={node.fields.slug}>
                 <MDBView style={{cursor: 'pointer'}}>
-                    <img
-                      className="d-block w-100"
-                      src={node.frontmatter.thumbnail}
+                    <Img
+                      fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
                       alt={node.frontmatter.title}
 
                       style={{height: '15rem'}}
                     />
+                    <MDBMask overlay="orange-slight" className="flex-center"/>
                 </MDBView>
                 <MDBCarouselCaption>
                   <h3 className="h4">{node.frontmatter.title}</h3>
-                  <h4 className='h4-responsive'>{node.excerpt}</h4>
+                  <h4 className='h4-responsive' style={{fontWeight: '600'}}>{node.excerpt}</h4>
                   <p>{node.frontmatter.date}</p>
                 </MDBCarouselCaption>
               </Link>

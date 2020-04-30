@@ -22,7 +22,7 @@ const NavBar = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <MDBNavbar color="" dark text='center' expand="md">
+    <MDBNavbar color="transparent" light text='center' expand="md">
       <MDBNavbarToggler onClick={toggle} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav center='true'>

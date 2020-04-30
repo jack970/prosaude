@@ -1,8 +1,9 @@
 import React from 'react';
-import { MDBCard, MDBRow, MDBBtn, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText} from 'mdbreact';
+import { MDBCard, MDBRow, MDBBtn, MDBCardBody, MDBCardTitle, MDBCardText} from 'mdbreact';
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import media from 'styled-media-query'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 export const Col = styled.div`
     width: 15rem;
@@ -27,7 +28,13 @@ const SectionNoticias = () => {
                 node {
                 excerpt
                 frontmatter {
-                    thumbnail
+                    thumbnail {
+                        childImageSharp {
+                            fluid(maxWidth: 300) {
+                                ...GatsbyImageSharpFluid_tracedSVG
+                            }
+                        }
+                    }
                     date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
                     title
                 }
@@ -46,14 +53,14 @@ const SectionNoticias = () => {
     marginRight: '0'}}>
         <Col>
             <div>
-                <h2>
+                <h2 className='h3-responsive'>
                     ÚLTIMAS <strong>NOTÍCIAS</strong> 
                     <hr style={{borderBottom:'1px solid #FDB700'}}/>
                 </h2>
             </div>
             {info.map(({node}, i) =>(
             <MDBCard style={{ marginBottom: '2rem' }} key={i}>
-                <MDBCardImage className="img-fluid" src={node.frontmatter.thumbnail}
+                <Img className="img-fluid" fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
                 waves />
                 <MDBCardBody>
                     <MDBCardText>{node.frontmatter.date}</MDBCardText>

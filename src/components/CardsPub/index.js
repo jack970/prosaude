@@ -15,7 +15,13 @@ const CardsPub = () => {
                 node {
                 excerpt
                 frontmatter {
-                    thumbnail
+                    thumbnail {
+                        childImageSharp {
+                            fluid(maxWidth: 300) {
+                                ...GatsbyImageSharpFluid_tracedSVG
+                            }
+                        }
+                    }
                     date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
                     title
                     description
@@ -43,7 +49,7 @@ const CardsPub = () => {
                 <Cards key={i}
                 title={node.frontmatter.title}
                 description={node.excerpt}
-                thumbnail={node.frontmatter.thumbnail}
+                thumbnail={node.frontmatter.thumbnail.childImageSharp.fluid}
                 slug={node.fields.slug}
                 date={node.frontmatter.date}
                 />

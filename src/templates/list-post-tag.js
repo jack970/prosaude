@@ -30,21 +30,20 @@ const ListTagsPosts = props => {
             <Divisao>
                 <DivPost>
                     <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'
-                        style={{paddingLeft: '0'}}
-                    >
-                            <h2 style={{fontWeight: '500'}}>{tag}</h2>
-                            <hr style={{borderTop: '2px solid #FD0'}} />
+                        style={{paddingLeft: '0'}}>
+                        <h2 style={{fontWeight: '500'}}>{tag}</h2>
+                        <hr style={{borderTop: '2px solid #FD0'}} />
                     </div>
                     <MDBRow >
-                    { postList.map(({node}, i) => (
-                    <Cards key={i}
-                    title={node.frontmatter.title}
-                    description={node.frontmatter.description}
-                    thumbnail={node.frontmatter.thumbnail}
-                    slug={node.fields.slug}
-                    date={node.frontmatter.date}
-                    />
-                    ))}
+                        { postList.map(({node}, i) => (
+                            <Cards key={i}
+                            title={node.frontmatter.title}
+                            description={node.frontmatter.description}
+                            thumbnail={node.frontmatter.thumbnail.childImageSharp.fluid}
+                            slug={node.fields.slug}
+                            date={node.frontmatter.date}
+                            />
+                        ))}
                     </MDBRow>
                 </DivPost>
                 <SectionNoticias />
@@ -67,7 +66,13 @@ export const query = graphql`
                     node {
                         frontmatter {
                             title
-                            thumbnail
+                            thumbnail {
+                                childImageSharp {
+                                    fluid(maxWidth: 1080) {
+                                        ...GatsbyImageSharpFluid_tracedSVG
+                                    }
+                                }
+                            }
                             description
                             date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
                             tags

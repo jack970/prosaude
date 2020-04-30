@@ -1,6 +1,7 @@
 import React from 'react';
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBIcon } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCol, MDBIcon } from 'mdbreact';
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 
 const Cards = ({title, description, thumbnail, slug, date}) => {
 
@@ -8,9 +9,9 @@ const Cards = ({title, description, thumbnail, slug, date}) => {
       <MDBCol md="4" style={{marginBottom: '2rem'}}>
         <MDBCard>
         <Link to={slug}>
-          <MDBCardImage
+          <Img
             top
-            src={thumbnail}
+            fluid={thumbnail}
             overlay='white-slight'
             hover
             waves
