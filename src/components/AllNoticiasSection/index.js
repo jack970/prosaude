@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 export const Col = styled.div`
-    width: 15rem;
+    width: 13rem;
     margin-left: 4rem;
 
     ${media.lessThan('765px')`

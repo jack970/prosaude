@@ -7,6 +7,8 @@ import Cards from '../components/Cards'
 import styled from 'styled-components'
 import SectionNoticias from '../components/AllNoticiasSection'
 import media from 'styled-media-query'
+import PaginationTags from '../components/Pagination'
+import kebabCase from 'lodash/kebabCase'
 
 export const Divisao = styled.div`
     display: flex;
@@ -22,7 +24,13 @@ export const DivPost = styled.div``
 const ListTagsPosts = props => {
     const postList = props.data.allMarkdownRemark.edges
 
-    const { tag } = props.pageContext
+    const {tag, currentPage, numPages } = props.pageContext
+    const link = `/${kebabCase(tag)}`
+    const isFirst = currentPage === 1
+    const isLast = currentPage === numPages
+    const prevPage = currentPage - 1 === 1 ? `${link}` : `${link}/page/${currentPage - 1}`
+    const nextPage = `${link}/page/${currentPage + 1}`
+
     return(
         <Layout>
             <SEO title={tag}
@@ -34,7 +42,7 @@ const ListTagsPosts = props => {
                         <h2 style={{fontWeight: '500'}}>{tag}</h2>
                         <hr style={{borderTop: '2px solid #FD0'}} />
                     </div>
-                    <MDBRow >
+                    <MDBRow>
                         { postList.map(({node}, i) => (
                             <Cards key={i}
                             title={node.frontmatter.title}
@@ -45,6 +53,14 @@ const ListTagsPosts = props => {
                             />
                         ))}
                     </MDBRow>
+                    <PaginationTags
+                            currentPage={currentPage}
+                            numPages={numPages}
+                            isFirst={isFirst}
+                            isLast={isLast}
+                            prevPage={prevPage}
+                            nextPage={nextPage}
+                        />
                 </DivPost>
                 <SectionNoticias />
             </Divisao>
