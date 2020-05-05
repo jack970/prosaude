@@ -34,7 +34,8 @@ const NavBar = () => {
         </MDBNavbarNav>
         <MDBNavbarNav right>
           <MDBFormInline className="md-form mr-auto m-0">
-            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" 
+            onChange={() => {}} />
           </MDBFormInline>
         </MDBNavbarNav>
       </MDBCollapse>
