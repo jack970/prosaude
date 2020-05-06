@@ -33,14 +33,14 @@ const NavBar = () => {
           ))}
         </MDBNavbarNav>
         <MDBNavbarNav right>
-          <MDBFormInline className="md-form mr-auto m-0">
-            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" 
-            onChange={() => {}} />
+          <MDBFormInline className="md-form mr-5 m-0">
+          <Link to='/pesquisa' style={{color: '#fdb700'}}>
+            <i className="fas fa-search"></i>
+          </Link>
           </MDBFormInline>
         </MDBNavbarNav>
       </MDBCollapse>
     </MDBNavbar>
   )
 }
-
 export default NavBar;

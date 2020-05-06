@@ -18,7 +18,7 @@ const Search = () => {
         algolia.appId,
         algolia.searchOnlyApiKey
     )
-    console.log(algolia)
+
 return(
     <S.SearchWrapper>
         <InstantSearch searchClient={searchClient} indexName={algolia.indexName}>
@@ -27,8 +27,7 @@ return(
                 translations={{
                 stats(nbHits) {
                     return `${nbHits} resultados encontrados`
-                },
-                }}
+                }}}
             />
       <Hits hitComponent={Hit} />
     </InstantSearch>

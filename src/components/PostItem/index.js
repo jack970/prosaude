@@ -28,7 +28,7 @@ const PostItem = ({ title, thumbnail, description, date, slug}) => {
               {description}
             </p>
             <Link to={slug} >
-              <MDBBtn className="btn btn-blue btn-rounded btn-md waves-effect waves-light" size="md">
+              <MDBBtn className="btn btn-rounded btn-md waves-effect waves-light" size="md" color= 'orange'>
                 Ler Mais
               </MDBBtn>
             </Link>
