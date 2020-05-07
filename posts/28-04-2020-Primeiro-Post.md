@@ -5,7 +5,7 @@ date: "2019-04-28"
 thumbnail: /assets/img/plantas.jpg
 tags: 
     - Notícias
-    - Institucional
+    - Guia Médico
 ---
 
 # Testando meu post

@@ -13,45 +13,53 @@ module.exports = {
     siteUrl: 'https://www.prosaudecatalao.gov.br',
     menuHeader: [
       {
-        link: '/institucional',
         label: 'Institucional',
-        sublink: {
-          link: '/',
-          label: 'link 1',
-        }
+        submenu: [
+            {
+                label: 'História',
+                url: '/historia'
+            },
+            {
+                label: 'Equipe',
+                url: '/equipe'
+            },
+            {
+                label: 'Junta Médica',
+                url: '/junta-medica'
+            }
+        ]
       },
       {
-        link: '/noticias',
-        label: 'Notícias e Novidades',
-        sublink: {
-          link: '/',
-          label: 'link 2',
-        }
-      },
-      {
-        link: '/servicos',
         label: 'Serviços',
-        sublink: {
-          link: '/',
-          label: 'link 3',
-        }
+        submenu: [
+            {
+                label: 'Guia Médico',
+                url: '/guia-medico'
+            },
+        ]
       },
       {
-        link: '/publicacoes',
         label: 'Publicações',
-        sublink: {
-          link: '/',
-          label: 'link 4',
-        }
+        submenu: [
+            {
+                label: 'Portarias do PROSAUDE',
+                url: '/portarias-do-prosaude'
+            },
+            {
+                label: 'Legislação Municipal',
+                url: '/legislacao-municipal'
+            },
+            {
+                label: 'Demonstrativos Contábeis',
+                url: '/demonstrativos-contabeis'
+            },
+            {
+              label: 'Conselho do PROSAUDE',
+              url: '/conselho-do-prosaude'
+          }
+        ]
       },
-      {
-        link: '/transparencia',
-        label: 'Transparência',
-        sublink: {
-          link: '/',
-          label: 'link 5',
-        }
-      }
+      
     ]
   },
   plugins: [
