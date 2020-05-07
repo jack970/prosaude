@@ -10,26 +10,47 @@ module.exports = {
     description: `Programa de assistência aos servidores de Catalão.`,
     address: 'Travessa Píres de Matos, 50 - Amambai, Campo Grande - MS, Brasil CEP: 79005-060',
     author: `@gatsbyjs`,
+    siteUrl: 'https://www.prosaudecatalao.gov.br',
     menuHeader: [
       {
         link: '/institucional',
-        label: 'Institucional'
+        label: 'Institucional',
+        sublink: {
+          link: '/',
+          label: 'link 1',
+        }
       },
       {
         link: '/noticias',
-        label: 'Notícias e Novidades'
+        label: 'Notícias e Novidades',
+        sublink: {
+          link: '/',
+          label: 'link 2',
+        }
       },
       {
         link: '/servicos',
-        label: 'Serviços'
+        label: 'Serviços',
+        sublink: {
+          link: '/',
+          label: 'link 3',
+        }
       },
       {
         link: '/publicacoes',
-        label: 'Publicações'
+        label: 'Publicações',
+        sublink: {
+          link: '/',
+          label: 'link 4',
+        }
       },
       {
         link: '/transparencia',
-        label: 'Transparência'
+        label: 'Transparência',
+        sublink: {
+          link: '/',
+          label: 'link 5',
+        }
       }
     ]
   },

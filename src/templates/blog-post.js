@@ -27,7 +27,8 @@ const BlogPost = ({data, pageContext}) => {
     return(
         <Layout>
             <SEO title={post.frontmatter.title} 
-            description={post.frontmatter.description} />
+            description={post.frontmatter.description}
+            image={post.frontmatter.thumbnail.publicURL} />
             <Divisao>
                 <DivPost>
                     <S.PostHeader>
@@ -68,6 +69,9 @@ export const query = graphql`
                 description
                 title
                 tags
+                thumbnail {
+                    publicURL
+                }
             }
             html
         }

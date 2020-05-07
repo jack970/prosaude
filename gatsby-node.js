@@ -42,6 +42,9 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                thumbnail {
+                  publicURL
+                }
               }
             }
             previous {

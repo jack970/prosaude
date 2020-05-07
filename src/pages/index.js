@@ -12,7 +12,7 @@ const IndexPage = ({data}) => {
   const postList = data.allMarkdownRemark.edges
   return (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Início" />
     <MDBRow style={{marginTop: '5rem'}}>
       <MDBCol>
         <h1 style={{fontWeight: '500'}}>Notícias</h1>
