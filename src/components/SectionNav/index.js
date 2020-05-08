@@ -7,7 +7,10 @@ import Img from 'gatsby-image'
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
     query allPosts {
-      allMarkdownRemark(limit: 3, sort: {fields: frontmatter___date, order: DESC}) {
+      allMarkdownRemark(limit: 3, sort: {fields: frontmatter___date, order: DESC}
+        filter: {
+          fileAbsolutePath: { glob: "**/posts/*.md" }
+        }) {
         edges {
           node {
             excerpt(pruneLength: 50)

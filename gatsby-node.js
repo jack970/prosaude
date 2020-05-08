@@ -29,6 +29,9 @@ exports.createPages = async ({ graphql, actions }) => {
       {
         postRemark: allMarkdownRemark(
           sort: {order: ASC, fields: [frontmatter___date]}
+          filter: {
+            fileAbsolutePath: { glob: "**/posts/*.md" }
+          }
         ) {
           edges {
             node {
@@ -63,12 +66,20 @@ exports.createPages = async ({ graphql, actions }) => {
             totalCount
           }
         }
+        especialidadesGroup: allMarkdownRemark {
+          group(field: frontmatter___speciality) {
+            fieldValue
+            totalCount
+          }
+        }
       }
       `
     ).then(result => {
         const posts = result.data.postRemark.edges
         const tags = result.data.tagsGroup.group
+        const especialidades = result.data.especialidadesGroup.group
 
+        //Gera página dos posts
         posts.forEach(({node, next, previous}) => {
             createPage ({
                 path: node.fields.slug,
@@ -81,6 +92,7 @@ exports.createPages = async ({ graphql, actions }) => {
             })
         })
 
+        //Gera uma página através de uma nova tag criada em um post
         const postsPerPage = 6
 
         tags.forEach((tag, i) => {
@@ -103,5 +115,25 @@ exports.createPages = async ({ graphql, actions }) => {
             })
           })
         })
+
+        especialidades.forEach(especialidade => {
+          createPage ({
+              path: `/guia-medico/especialidades`,
+              component: path.resolve('./src/templates/all-speciality.js'),
+              context: {
+                especialidades: especialidade,
+              }
+          })
+       })
+
+        especialidades.forEach(especialidade => {
+          createPage ({
+              path: `/guia-medico/especialidades/${_.kebabCase(especialidade.fieldValue)}/`,
+              component: path.resolve('./src/templates/specialityPost.js'),
+              context: {
+                speciality: especialidade.fieldValue,
+              }
+          })
+      })
     })
   }

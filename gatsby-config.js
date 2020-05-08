@@ -34,7 +34,7 @@ module.exports = {
         submenu: [
             {
                 label: 'Guia Médico',
-                url: '/guia-medico'
+                url: '/guia-medico/especialidades'
             },
         ]
       },
@@ -73,6 +73,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `guia`,
+        path: `${__dirname}/guia-medico`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `posts`,
         path: `${__dirname}/posts`,
       },
@@ -84,14 +91,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/data`,
-      },
-    },
-    `gatsby-transformer-csv`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {
