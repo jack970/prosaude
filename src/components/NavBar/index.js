@@ -32,6 +32,13 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+  const handleInput = event => {
+    const target = event.target
+    const value = target.value
+    const name = target.name
+  }
+
+
   return (
     <MDBNavbar color="transparent" light text='center' expand="md">
       <MDBNavbarToggler onClick={toggle} />
@@ -57,14 +64,18 @@ const NavBar = () => {
           ))}
         </MDBNavbarNav>
         <MDBNavbarNav right>
-            <form action='/pesquisa'
-                      method='GET'>
-              <S.Input
-                type="text" 
-                placeholder="Pesquisar" 
-                aria-label="Search"
-              />
-            </form>
+          <form action='/pesquisa' method="post" name="pesquisa">
+            <S.Input
+              type="text" 
+              placeholder=""
+              aria-label="Search"
+              onBlur={e => e.target.value= ''}
+              onChange={handleInput}
+            />
+            <S.Span aria-hidden="true">
+                  <i className="fa fa-search searchicon" aria-hidden="true" />
+            </S.Span> 
+          </form>
         </MDBNavbarNav>
       </MDBCollapse>
     </MDBNavbar>
