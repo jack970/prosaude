@@ -4,7 +4,7 @@ description: "Minha Descrição do Post"
 date: "2019-04-28"
 thumbnail: "/assets/img/plantas.jpg"
 tags: 
-    - Teste de Página
+    - Notícias
 ---
 
 # Testando meu post

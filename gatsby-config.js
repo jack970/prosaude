@@ -1,9 +1,3 @@
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
-
-const queries = require("./src/utils/algolia_queries")
-
 module.exports = {
   siteMetadata: {
     title: `PROSAUDE`,
@@ -93,17 +87,6 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-plugin-algolia-search`,
-      options: {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        indexName: process.env.ALGOLIA_INDEX_NAME,
-        queries,
-        chunkSize: 10000, // default: 1000
-        enablePartialUpdates: true,
-      },
-    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {

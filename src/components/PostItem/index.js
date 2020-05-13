@@ -1,16 +1,15 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBMask, MDBView, MDBBtn } from "mdbreact";
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 
 const PostItem = ({ title, thumbnail, description, date, slug}) => {
   return (
         <MDBRow className="pb-5">
           <MDBCol lg="5" xl="4">
             <MDBView hover className="rounded z-depth-1-half mb-lg-0 mb-4">
-                <img
-                    className="img-fluid"
-                    src={thumbnail}
-                    alt=""
+                <Img
+                    fluid={thumbnail}
                 />
                 <Link to={slug}>
                     <MDBMask overlay="white-slight" />
@@ -21,10 +20,10 @@ const PostItem = ({ title, thumbnail, description, date, slug}) => {
             <h3 className="font-weight-bold mb-3 p-0">
               <strong>{title}</strong>
             </h3>
-            <p>
+            <p className="dark-grey-text">
                 {date}
             </p>
-            <p className="dark-grey-text">
+            <p>
               {description}
             </p>
             <Link to={slug} >

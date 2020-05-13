@@ -37,7 +37,7 @@ const NavBar = () => {
             excerpt(pruneLength: 30)
             frontmatter {
               title
-              date
+              date(formatString: "DD [/] MM [/] YYYY")
               tags
             }
 
@@ -86,7 +86,7 @@ const NavBar = () => {
   
   const { filteredData, query } = state
   const hasSearchResults = filteredData && query !== emptyQuery
-  const posts = hasSearchResults ? filteredData : allPosts
+  const posts = hasSearchResults ? filteredData : []
   
 
   //dropdown mobile
@@ -134,24 +134,25 @@ const NavBar = () => {
                 </S.Span> 
               </MDBDropdownToggle>
               <MDBDropdownMenu basic>
-                {posts.map(({node}) => {
+                {posts.map(({node}, i) => {
                   const { excerpt } = node
                   const { title, date, tags } = node.frontmatter
 
                   const { slug } = node.fields
                   return(
-                    <>
-                    <Link id='link' to={slug}>
-                      <MDBDropdownItem>
-                        <b>{title}</b> <br />
-                        <p style={{whiteSpace: 'break-spaces'}}>
-                          {excerpt}
-                        </p> <br />
-                        <span id="result"> {date} | {tags}</span>
-                        <MDBDropdownItem divider />
-                      </MDBDropdownItem>
-                    </Link>
-                    </>
+                    <div key={i}>
+                      <Link id='link' to={slug}>
+                        <MDBDropdownItem>
+                          <b>{title}</b> <br />
+                          <p style={{whiteSpace: 'break-spaces'}}>
+                            {excerpt}
+                          </p> <br />
+                          {tags}
+                          <p className="dark-grey-text">{date}</p>
+                          <MDBDropdownItem divider />
+                        </MDBDropdownItem>
+                      </Link>
+                    </div>
                 )})}
               </MDBDropdownMenu>
             </form>

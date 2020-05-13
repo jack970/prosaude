@@ -13,7 +13,7 @@ const especialidadePage = ({ data }) => {
             <SEO title="Todas as Especialidades"/>
             <MDBRow>
                 <MDBCol>
-                    <h1 style={{fontWeight: '500'}}>Especialidades</h1>
+                    <h1 style={{fontWeight: '500'}}>Guia-Médico </h1>
                     <hr style={{borderTop: '2px solid #FD0'}} />
                 </MDBCol>
             </MDBRow>
@@ -21,7 +21,8 @@ const especialidadePage = ({ data }) => {
             <MDBCardGroup>
                 {especialidades.map((especialidade, i) => {
                     return(
-                    <Link className='w-25 mr-5' to={`/guia-medico/especialidades/${kebabCase(especialidade.fieldValue)}`}>
+                    <Link className='w-25 mr-5' key={i}
+                    to={`/guia-medico/especialidades/${kebabCase(especialidade.fieldValue)}`}>
                         <MDBCard>
                             <MDBCardBody>
                             <MDBCardTitle tag="h5">{especialidade.fieldValue}</MDBCardTitle>

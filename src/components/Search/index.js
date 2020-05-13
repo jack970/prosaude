@@ -1,36 +1,101 @@
-import React from "react"
+import React, {useState} from "react"
 
-import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, SearchBox, Hits, Stats } from 'react-instantsearch-dom';
-import Hit from './hit'
-
+import PostItem from '../PostItem'
+import {MDBInput} from 'mdbreact' 
 import * as S from './style'
-
-const algolia = {
-    appId: 'BNUSOSS8HW',
-    searchOnlyApiKey: '484155039faeec00af4ca229b3866195',
-    indexName: 'POSTS'
-
-}
+import { useStaticQuery, graphql } from "gatsby";
 
 const Search = () => {
-    const searchClient = algoliasearch(
-        algolia.appId,
-        algolia.searchOnlyApiKey
-    )
+    const data = useStaticQuery(graphql`
+    {
+        posts: allMarkdownRemark(
+            filter : {
+                fileAbsolutePath: { glob: "**/posts/*.md" }
+            }
+            sort: { 
+                fields: frontmatter___date, order: DESC 
+            }){
+            edges {
+                node {
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        title
+                        thumbnail {
+                            childImageSharp {
+                                fluid(maxWidth: 300) {
+                                    ...GatsbyImageSharpFluid_tracedSVG
+                                }
+                            }
+                        }
+                        date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+                        description
+                    }
+                }
+            }
+        }
+    }`)
+
+    const allPosts = data.posts.edges
+    
+    const emptyQuery = ""
+    
+    const [state, setState] = useState({
+        filteredData: [],
+        query: emptyQuery,
+    })
+    
+    const handleInputChange = event => {
+        console.log(event.target.value)
+        const query = event.target.value
+    
+        const posts = allPosts || []
+    
+        const filteredData = posts.filter(post => {
+        const { title, description, tags } = post.node.frontmatter
+        return (
+            description.toLowerCase().includes(query.toLowerCase()) ||
+            title.toLowerCase().includes(query.toLowerCase()) ||
+            (tags &&
+            tags
+                .join("")
+                .toLowerCase()
+                .includes(query.toLowerCase()))
+        )
+        })
+    
+        setState({
+        query,
+        filteredData,
+        })
+    }
+    
+    
+    const { filteredData, query } = state
+    const hasSearchResults = filteredData && query !== emptyQuery
+    const posts = hasSearchResults ? filteredData : []
+    console.log(hasSearchResults)
+    
 
 return(
     <S.SearchWrapper>
-        <InstantSearch searchClient={searchClient} indexName={algolia.indexName}>
-            <SearchBox translations={{ placeholder: "Pesquisar..." }} />
-            <Stats
-                translations={{
-                stats(nbHits) {
-                    return `${nbHits} resultados encontrados`
-                }}}
+        <MDBInput label="Pesquisar..." icon="search" background size="lg" onChange={handleInputChange}/>
+        {posts.map(({node}, i) => {
+            const {slug} = node.fields
+            const {fluid} = node.frontmatter.thumbnail.childImageSharp
+            const { title, date, description } = node.frontmatter
+
+            return(
+            <PostItem key={i}
+                slug={slug}
+                thumbnail={fluid}
+                title={title}
+                date={date}
+                description={description}
             />
-      <Hits hitComponent={Hit} />
-    </InstantSearch>
+        )
+        })}
   </S.SearchWrapper>
 )}
 
