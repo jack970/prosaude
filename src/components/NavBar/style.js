@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import media from 'styled-media-query'
 
+export const AcessarClasses = styled.div`
 
+`
 export const Span = styled.span`
   position: absolute;
   right: 1.5rem;
@@ -9,7 +11,7 @@ export const Span = styled.span`
   pointer-events: none;
 
   ${media.lessThan("767px")`
-        left: 1.5rem;
+        left: .6rem;
   `}
 `
 
@@ -28,7 +30,7 @@ export const Input = styled.input`
 
     :focus {
         background: #FFF;
-        padding: 1px 1px 1px 5px;
+        
         width: 200px;
         border: 1px solid #fdb700;
           top: 0;
