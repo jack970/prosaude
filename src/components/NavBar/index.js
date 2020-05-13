@@ -34,7 +34,7 @@ const NavBar = () => {
         }) {
         edges {
           node {
-            excerpt(pruneLength: 200)
+            excerpt(pruneLength: 30)
             frontmatter {
               title
               date
@@ -95,7 +95,7 @@ const NavBar = () => {
 
   return (
     <S.AcessarClasses>
-    <MDBNavbar color="transparent" light text='center' expand="md" style={{padding: '.5rem 3rem'}}>
+    <MDBNavbar color="transparent" light text='center' expand="md" style={{padding: '0.5rem 5rem 0.5rem 1rem'}}>
       <MDBNavbarToggler onClick={toggle} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav> 
@@ -121,7 +121,7 @@ const NavBar = () => {
         <MDBNavbarNav right>
           <MDBDropdown>
             <form action='/pesquisa' method="post" name="pesquisa">
-              <MDBDropdownToggle nav>
+              <MDBDropdownToggle nav id="search">
                 <S.Input
                   type="text" 
                   placeholder=""
@@ -133,19 +133,24 @@ const NavBar = () => {
                     <i className="fa fa-search searchicon" aria-hidden="true" />
                 </S.Span> 
               </MDBDropdownToggle>
-              <MDBDropdownMenu basic id='search'>
+              <MDBDropdownMenu basic>
                 {posts.map(({node}) => {
                   const { excerpt } = node
                   const { title, date, tags } = node.frontmatter
 
+                  const { slug } = node.fields
                   return(
                     <>
+                    <Link id='link' to={slug}>
                       <MDBDropdownItem>
                         <b>{title}</b> <br />
-                        {excerpt} <br />
-                        teste
+                        <p style={{whiteSpace: 'break-spaces'}}>
+                          {excerpt}
+                        </p> <br />
+                        <span id="result"> {date} | {tags}</span>
+                        <MDBDropdownItem divider />
                       </MDBDropdownItem>
-                      <MDBDropdownItem divider />
+                    </Link>
                     </>
                 )})}
               </MDBDropdownMenu>

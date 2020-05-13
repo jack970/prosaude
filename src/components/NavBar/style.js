@@ -2,9 +2,16 @@ import styled from 'styled-components'
 import media from 'styled-media-query'
 
 export const AcessarClasses = styled.div`
-
+  #search {
+    padding: 0;
+  }
+  #link {
+    padding: 0;
+  }
 `
 export const Span = styled.span`
+  transition: display 4s ease-in-out;
+
   position: absolute;
   right: 1.5rem;
   line-height: 1.8rem;
@@ -30,12 +37,12 @@ export const Input = styled.input`
 
     :focus {
         background: #FFF;
-        
         width: 200px;
         border: 1px solid #fdb700;
           top: 0;
           right: 100%;    
-        }
+    }
+
     :focus+${Span},
     :active+${Span} {
       display: none;

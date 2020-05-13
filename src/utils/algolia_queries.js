@@ -1,5 +1,11 @@
 const postQuery = `{
-    posts: allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }){
+    posts: allMarkdownRemark(
+      filter : {
+        fileAbsolutePath: { glob: "**/posts/*.md" }
+      }
+      sort: { 
+        fields: frontmatter___date, order: DESC 
+      }){
       edges {
         node {
           objectID: id
