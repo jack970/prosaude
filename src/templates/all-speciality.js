@@ -3,7 +3,8 @@ import Layout from '../components/Layout/layout'
 import SEO from '../components/seo'
 import { graphql, Link } from 'gatsby'
 import kebabCase from "lodash/kebabCase"
-import {MDBCardGroup, MDBCard, MDBCardBody, MDBCardTitle, MDBRow, MDBCol,MDBBtn} from 'mdbreact'
+import CardsEspecialidade from '../components/CardsEspecialidade'
+import { MDBRow, MDBCol, MDBCardGroup} from 'mdbreact'
 
 const especialidadePage = ({ data }) => {
     const especialidades = data.allMarkdownRemark.group
@@ -23,12 +24,9 @@ const especialidadePage = ({ data }) => {
                     return(
                     <Link className='w-25 mr-5' key={i}
                     to={`/guia-medico/especialidades/${kebabCase(especialidade.fieldValue)}`}>
-                        <MDBCard>
-                            <MDBCardBody>
-                            <MDBCardTitle tag="h5">{especialidade.fieldValue}</MDBCardTitle>
-                            <MDBBtn color="primary" size="md">Ler Mais</MDBBtn>
-                            </MDBCardBody>
-                        </MDBCard>
+                        <CardsEspecialidade
+                            title={especialidade.fieldValue}
+                        />
                     </Link>
                 )})}
             </MDBCardGroup>
