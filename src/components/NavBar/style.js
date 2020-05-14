@@ -13,8 +13,8 @@ export const Span = styled.span`
   transition: display 4s ease-in-out;
 
   position: absolute;
-  right: 1.5rem;
-  line-height: 1.8rem;
+  right: 1rem;
+  line-height: 2.2rem;
   pointer-events: none;
 
   ${media.lessThan("767px")`
@@ -24,10 +24,11 @@ export const Span = styled.span`
 
 export const Input = styled.input`
     background: #FFF;
-    padding: 1px 1px 1px 5px;
+    padding: 5px 1px 5px 5px;
     position: relative; top: 0; left: 0;
     width: 40px;
     outline: none;
+    color: #fff;
     border: 1px solid #fff;
     cursor: pointer;
     border-radius: 6px;
@@ -38,10 +39,17 @@ export const Input = styled.input`
     :focus {
         background: #FFF;
         width: 200px;
+        color: #222;
         border: 1px solid #fdb700;
           top: 0;
           right: 100%;    
     }
+
+    ${media.lessThan("767px")`
+        :focus {
+          width: 100%;
+      }
+  `}
 
     :focus+${Span},
     :active+${Span} {

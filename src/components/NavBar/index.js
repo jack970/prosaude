@@ -126,7 +126,6 @@ const NavBar = () => {
                   type="text" 
                   placeholder=""
                   aria-label="Search"
-                  onBlur={e => e.target.value= ''}
                   onChange={handleInputChange}
                 />
                 <S.Span aria-hidden="true">
