@@ -1,7 +1,5 @@
 backend:
   name: github
-  branch: master
-  site_domain: https://prosaudetest.netlify.app
   repo: https://github.com/jack970/prosaude.git
 
 site_url: https://prosaudetest.netlify.app
