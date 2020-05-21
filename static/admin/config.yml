@@ -1,5 +1,7 @@
 backend:
   name: github
+  branch: master
+  site_domain: https://prosaudetest.netlify.app
   repo: https://github.com/jack970/prosaude.git
 
 site_url: https://prosaudetest.netlify.app
@@ -13,8 +15,7 @@ collections:
   - label: Posts do Blog
     name: posts
     folder: posts
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    preview_path: /{{title}}
+    slug: '{{slug}}'
     create: true
     fields:
       - {label: "Título", name: "title", widget: "string"}

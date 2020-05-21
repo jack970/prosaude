@@ -1,7 +1,7 @@
 ---
-title: "Meu Primeiro Post no blog"
+title: "Meu Segundo Post no blog"
 description: "Minha Descrição do Post"
-date: "2019-04-28"
+date: "2019-05-21"
 thumbnail: "/assets/img/plantas.jpg"
 tags: 
     - Notícias
