@@ -20,7 +20,7 @@ collections:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Descrição", name: "description", widget: "string"}
       - {label: "Data", name: "date", widget: "datetime", format: 'YYYY-MM-DD hh:mm:ss'}
-      - {label: "Thumbnail", name: "image", widget: "image"}
+      - {label: "Thumbnail", name: "thumbnail", widget: "image"}
       - {label: "Tags", name: "tags", widget: "list", default: ['']}
       - {label: "Corpo", name: "body", widget: "markdown"}
   - label: Guia Médico
