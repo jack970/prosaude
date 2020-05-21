@@ -70,13 +70,10 @@ const Search = () => {
         filteredData,
         })
     }
-    
-    
+
     const { filteredData, query } = state
     const hasSearchResults = filteredData && query !== emptyQuery
     const posts = hasSearchResults ? filteredData : []
-    console.log(hasSearchResults)
-    
 
 return(
     <S.SearchWrapper>

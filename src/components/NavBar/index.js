@@ -60,7 +60,6 @@ const NavBar = () => {
   })
 
   const handleInputChange = event => {
-    console.log(event.target.value)
     const query = event.target.value
 
     const posts = allPosts || []
@@ -143,11 +142,24 @@ const NavBar = () => {
                       <Link id='link' to={slug}>
                         <MDBDropdownItem>
                           <b>{title}</b> <br />
-                          <p style={{whiteSpace: 'break-spaces'}}>
+                          <p style={{whiteSpace: 'break-spaces',  
+                                    fontSize: '0.8rem'
+                        }}>
                             {excerpt}
                           </p> <br />
-                          {tags}
-                          <p className="dark-grey-text">{date}</p>
+                          <div style={{fontSize: '.8rem'}}>
+                            <mark style={{
+                                backgroundColor: '#FDB700', 
+                                fontWeight: '700',
+                                color: '#fff',
+                                fontSize: '14px ',
+                                padding: '0 5px', 
+                                borderRadius: '2rem'}}
+                              >{tags}</mark>
+                            <p className="dark-grey-text" style={{fontWeight: '500'}}>
+                                {date}
+                            </p>
+                          </div>
                           <MDBDropdownItem divider />
                         </MDBDropdownItem>
                       </Link>
