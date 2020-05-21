@@ -12,7 +12,9 @@ collections:
   - label: Posts do Blog
     name: posts
     folder: posts
-    slug: '{{slug}}'
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
     create: true
     fields:
       - {label: "Título", name: "title", widget: "string"}
