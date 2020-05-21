@@ -4,7 +4,7 @@ module.exports = {
     description: `Programa de assistência aos servidores de Catalão.`,
     address: 'Travessa Píres de Matos, 50 - Amambai, Campo Grande - MS, Brasil CEP: 79005-060',
     author: `@gatsbyjs`,
-    siteUrl: 'https://www.prosaudecatalao.gov.br',
+    siteUrl: 'https://www.prosaudetest.netlify.app',
     menuHeader: [
       {
         label: 'Institucional',
@@ -124,6 +124,8 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-   `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-offline`,
   ],
 }

@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway 
+
+site_url: https://prosaudetest.netlify.app
+  
+media_folder: static/assets/img
+public_folder: /assets/img
+publish_mode: editorial_workflow
+locale: 'pt'
+
+collections:
+  - label: Posts do Blog
+    name: posts
+    folder: posts
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    preview_path: /{{title}}
+    create: true
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Descrição", name: "description", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime", format: 'YYYY-MM-DD hh:mm:ss'}
+      - {label: "Thumbnail", name: "image", widget: "image"}
+      - {label: "Tags", name: "tags", widget: "list", default: ['']}
+      - {label: "Corpo", name: "body", widget: "markdown"}
+  - label: Guia Médico
+    name: guia-medico
+    folder: guia-medico
+    create: true
+    editor:
+      preview: false
+    fields:
+      - {label: "Doutor", name: "doctor", widget: "string"}
+      - {label: "Clínica", name: "clinic", widget: "string"}
+      - {label: "Especialidade", name: "speciality", widget: "select", options: ["left", "center", "right"] }
+      - {label: "Endereço", name: "address", widget: "string"}
+      - {label: "tel", name: "tel", widget: "string"}
