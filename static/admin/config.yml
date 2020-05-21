@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: https://github.com/jack970/prosaude.git
+  name: git-gateway
 
 site_url: https://prosaudetest.netlify.app
   
