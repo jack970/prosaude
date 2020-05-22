@@ -20,14 +20,12 @@ const SectionNoticias = () => {
 
     const data = useStaticQuery(graphql`
         query SectionNotices {
-            allMarkdownRemark(limit: 2, 
-            filter: {frontmatter: {tags: {eq: "Notícias"}}}
-            sort: {order: DESC, fields: [frontmatter___date]}
+            allStrapiPosts(limit: 2, 
+                filter: {tags: {eq: "Notícias"}}
+                sort: {order: DESC, fields: date}
             ) {
             edges {
                 node {
-                excerpt
-                frontmatter {
                     thumbnail {
                         childImageSharp {
                             fluid(maxWidth: 300) {
@@ -37,16 +35,13 @@ const SectionNoticias = () => {
                     }
                     date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
                     title
-                }
-                fields {
-                    slug
+                    id
                 }
                 }
             }
             }
-        }
     `)
-    const info = data.allMarkdownRemark.edges
+    const info = data.allStrapiPosts.edges
   return (
     <MDBRow style={{textAlign: '-webkit-right',
     marginLeft: '0',
@@ -60,16 +55,16 @@ const SectionNoticias = () => {
             </div>
             {info.map(({node}, i) =>(
             <MDBCard style={{ marginBottom: '2rem' }} key={i}>
-                <Link to={node.fields.slug}>
+                <Link to={node.id}>
                     <Img className="img-fluid" 
-                    fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
+                    fluid={node.thumbnail.childImageSharp.fluid}
                     waves />
                 </Link>
                 <MDBCardBody>
-                    <MDBCardText>{node.frontmatter.date}</MDBCardText>
-                    <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>
+                    <MDBCardText>{node.date}</MDBCardText>
+                    <MDBCardTitle>{node.title}</MDBCardTitle>
                     <MDBCardText>{node.excerpt}</MDBCardText>
-                    <Link to={node.fields.slug}>
+                    <Link to={node.id}>
                         <MDBBtn color='elegant'>Ler mais</MDBBtn>
                     </Link>
                 </MDBCardBody>

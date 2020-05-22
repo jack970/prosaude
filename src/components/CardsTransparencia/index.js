@@ -4,27 +4,23 @@ import { useStaticQuery, graphql, Link} from 'gatsby'
 const CardsTransparencia = () => {
 
     const data = useStaticQuery(graphql`
-        query CardsTransparencia {
-            allMarkdownRemark(limit: 2, 
-            filter: {frontmatter: {tags: {eq: "Serviços"}}}
-            sort: {order: DESC, fields: [frontmatter___date]}
-            ) {
-            edges {
-                node {
-                excerpt
-                frontmatter {
-                    title
-                }
-                fields {
-                    slug
-                }
-                }
-            }
+      query CardsTransparencia {
+        allStrapiPosts(limit: 2, 
+        filter: {tags: {eq: "Serviços"}}
+        sort: {order: DESC, fields: date}
+        ) {
+        edges {
+            node {
+              title
+              description
+              id
             }
         }
+        }
+    }
     `)
 
-    const cadsTransparencia = data.allMarkdownRemark.edges
+    const cadsTransparencia = data.allStrapiPosts.edges
 return (
 <MDBContainer>
     <MDBRow style={{marginTop: '4rem'}}>
@@ -38,11 +34,11 @@ return (
         <MDBCol sm="6" key={i} style={{marginBottom: '2rem'}}>
           <MDBCard>
             <MDBCardBody>
-              <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>
+              <MDBCardTitle>{node.title}</MDBCardTitle>
               <MDBCardText>
                 {node.excerpt}
               </MDBCardText>
-              <Link to={node.fields.slug}>
+              <Link to={node.id}>
                 <MDBBtn color="elegant">Ver Mais</MDBBtn>
               </Link>
             </MDBCardBody>

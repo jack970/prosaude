@@ -7,7 +7,7 @@ import CardsEspecialidade from '../components/CardsEspecialidade'
 import { MDBRow, MDBCol, MDBCardGroup} from 'mdbreact'
 
 const especialidadePage = ({ data }) => {
-    const especialidades = data.allMarkdownRemark.group
+    const especialidades = data.allStrapiGuias.group
 
     return(
         <Layout>
@@ -39,8 +39,8 @@ export default especialidadePage
 
 export const query = graphql`
     query allPage {
-        allMarkdownRemark {
-            group(field: frontmatter___speciality) {
+        allStrapiGuias {
+            group(field: Especialidade) {
                 fieldValue
                 totalCount
             }

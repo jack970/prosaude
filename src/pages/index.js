@@ -9,7 +9,7 @@ import CardsPub from "../components/CardsPub"
 import CardsTransparencia from "../components/CardsTransparencia"
 
 const IndexPage = ({data}) => {
-  const postList = data.allMarkdownRemark.edges
+  const postList = data.allStrapiPosts.edges
   return (
   <Layout>
     <SEO title="Início" />
@@ -22,11 +22,11 @@ const IndexPage = ({data}) => {
     <MDBRow >
         { postList.map(({node}, i) => (
           <Cards key={i}
-          title={node.frontmatter.title}
+          title={node.title}
           description={node.excerpt}
-          thumbnail={node.frontmatter.thumbnail.childImageSharp.fluid}
-          slug={node.fields.slug}
-          date={node.frontmatter.date}
+          thumbnail={node.thumbnail.childImageSharp.fluid}
+          slug={node.id}
+          date={node.date}
           />
         ))}
     </MDBRow>
@@ -40,14 +40,12 @@ export default IndexPage
 
 export const PostListQuery = graphql`
   query PostList {
-    allMarkdownRemark(limit: 3, 
-      filter: {frontmatter: {tags: {eq: "Notícias"}}}
-      sort: {order: DESC, fields: [frontmatter___date]}
+    allStrapiPosts(limit: 3, 
+      filter: {tags: {eq: "Notícias"}}
+      sort: {order: DESC, fields: date}
       ) {
       edges {
         node {
-          excerpt
-          frontmatter {
             thumbnail {
               childImageSharp {
                   fluid(maxWidth: 1080) {
@@ -58,10 +56,7 @@ export const PostListQuery = graphql`
             date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
             title
             description
-          }
-          fields {
-            slug
-          }
+            id
         }
       }
     }

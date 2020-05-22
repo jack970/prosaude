@@ -9,6 +9,7 @@ import SectionNoticias from '../components/AllNoticiasSection'
 import media from 'styled-media-query'
 import kebabCase from "lodash/kebabCase"
 import {MDBBadge} from 'mdbreact'
+import Reactmarkdown from 'react-markdown'
 
 export const Divisao = styled.div`
     display: flex;
@@ -21,37 +22,35 @@ export const Divisao = styled.div`
 export const DivPost = styled.div``
 
 const BlogPost = ({data, pageContext}) => {
-    const post = data.markdownRemark
+    const post = data.strapiPosts
     const next = pageContext.next
     const previous = pageContext.previous
     return(
         <Layout>
-            <SEO title={post.frontmatter.title} 
-            description={post.frontmatter.description}
-            image={post.frontmatter.thumbnail.publicURL} />
+            <SEO title={post.title} 
+            description={post.description}
+            image={post.thumbnail.publicURL} />
             <Divisao>
                 <DivPost>
                     <S.PostHeader>
                         <S.PostDate>
                             <strong>Categorias:</strong>&nbsp;{` `}
-                            {post.frontmatter.tags.map((cat, i) => (
-                                <Link to={`/${kebabCase(cat)}`} key={i}>
-                                    <MDBBadge color="warning">{cat}</MDBBadge>&nbsp;
+                                <Link to={`/${kebabCase(post.tags)}`}>
+                                    <MDBBadge color="warning">{post.tags}</MDBBadge>&nbsp;
                                 </Link>
-                            ))}
                             <br/>
                             <br/>
-                            Publicado em {post.frontmatter.date}
+                            Publicado em {post.date}
                         </S.PostDate>
                         <S.PostTitle>
-                            {post.frontmatter.title}
+                            {post.title}
                         </S.PostTitle>
                         <S.PostDescription>
-                            {post.frontmatter.description}
+                            {post.description}
                         </S.PostDescription>
                     </S.PostHeader>
                     <S.MainContent>
-                        <div dangerouslySetInnerHTML={{__html: post.html}}></div>
+                        <Reactmarkdown source={post.conteudo}/>
                     </S.MainContent>
                     <RecomendPosts next={next} previous={previous}/>
                 </DivPost>
@@ -62,18 +61,20 @@ const BlogPost = ({data, pageContext}) => {
 }
 
 export const query = graphql`
-    query blogPost($slug: String!) {
-        markdownRemark(fields: { slug: { eq: $slug } }) {
-            frontmatter {
-                date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
-                description
-                title
-                tags
-                thumbnail {
-                    publicURL
+    query Post($id: String!) {
+        strapiPosts(id: {eq: $id}) {
+            title
+            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+            description
+            conteudo
+            tags
+            thumbnail {
+                childImageSharp {
+                    fluid(maxWidth: 1000) {
+                        ...GatsbyImageSharpFluid
+                    }
                 }
             }
-            html
         }
     }
     `

@@ -1,25 +1,5 @@
-const { createFilePath } = require(`gatsby-source-filesystem`)
-const { fmImagesToRelative } = require(`gatsby-remark-relative-images`)
-const path = require("path")
-const _ = require("lodash")
-
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-  fmImagesToRelative(node)
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ 
-        node, 
-        getNode, 
-        basePath: `pages` })
-
-    createNodeField({
-      node,
-      name: `slug`,
-      value: `/${slug.slice(12)}`,
-    })
-  }
-}
+const path = require('path')
+const _ = require('lodash')
 
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
@@ -27,47 +7,31 @@ exports.createPages = async ({ graphql, actions }) => {
     return graphql(
       `
       {
-        postRemark: allMarkdownRemark(
-          sort: {order: ASC, fields: [frontmatter___date]}
-          filter: {
-            fileAbsolutePath: { glob: "**/posts/*.md" }
-          }
-        ) {
+        postRemark: allStrapiPosts(sort: {order: DESC, fields: date}) {
           edges {
             node {
-              fields {
-                slug
-              }
+              id
             }
-            next{
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-                thumbnail {
-                  publicURL
-                }
+            next {
+              title
+              thumbnail {
+                publicURL
               }
             }
             previous {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
+              id
+              title
             }
           }
         }
-        tagsGroup: allMarkdownRemark {
-          group(field: frontmatter___tags) {
+        tagsGroup: allStrapiPosts {
+          group(field: tags) {
             fieldValue
             totalCount
           }
         }
-        especialidadesGroup: allMarkdownRemark {
-          group(field: frontmatter___speciality) {
+        especialidadesGroup: allStrapiGuias {
+          group(field: Especialidade) {
             fieldValue
             totalCount
           }
@@ -82,10 +46,10 @@ exports.createPages = async ({ graphql, actions }) => {
         //Gera página dos posts
         posts.forEach(({node, next, previous}) => {
             createPage ({
-                path: node.fields.slug,
+                path: node.id,
                 component: path.resolve('./src/templates/blog-post.js'),
                 context: {
-                    slug: node.fields.slug,
+                    id: node.id,
                     previous: previous,
                     next: next
                 }

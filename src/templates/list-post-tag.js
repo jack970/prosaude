@@ -22,7 +22,7 @@ export const Divisao = styled.div`
 export const DivPost = styled.div``
 
 const ListTagsPosts = props => {
-    const postList = props.data.allMarkdownRemark.edges
+    const postList = props.data.allStrapiPosts.edges
 
     const {tag, currentPage, numPages } = props.pageContext
     const link = `/${kebabCase(tag)}`
@@ -45,11 +45,11 @@ const ListTagsPosts = props => {
                     <MDBRow>
                         { postList.map(({node}, i) => (
                             <Cards key={i}
-                            title={node.frontmatter.title}
-                            description={node.frontmatter.description}
-                            thumbnail={node.frontmatter.thumbnail.childImageSharp.fluid}
-                            slug={node.fields.slug}
-                            date={node.frontmatter.date}
+                            title={node.title}
+                            description={node.description}
+                            thumbnail={node.thumbnail.childImageSharp.fluid}
+                            slug={node.id}
+                            date={node.date}
                             />
                         ))}
                     </MDBRow>
@@ -72,30 +72,26 @@ export const query = graphql`
     query Tags($tag: String!, 
                 $limit: Int!, 
                 $skip: Int!) {
-        allMarkdownRemark(
+        allStrapiPosts(
             limit: $limit, 
             skip: $skip
-            sort: {fields: [frontmatter___date], 
+            sort: {fields: [date], 
             order: DESC}, 
-            filter: {frontmatter: {tags: { in: [$tag]}}}) {
+            filter: {tags: { in: [$tag]}}) {
                 edges {
                     node {
-                        frontmatter {
-                            title
-                            thumbnail {
-                                childImageSharp {
-                                    fluid(maxWidth: 1080) {
-                                        ...GatsbyImageSharpFluid_tracedSVG
-                                    }
+                        title
+                        thumbnail {
+                            childImageSharp {
+                                fluid(maxWidth: 1080) {
+                                    ...GatsbyImageSharpFluid_tracedSVG
                                 }
                             }
-                            description
-                            date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
-                            tags
                         }
-                        fields {
-                            slug
-                        }
+                        description
+                        date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
+                        tags
+                        id
                     }
                 }
         }

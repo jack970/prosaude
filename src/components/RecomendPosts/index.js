@@ -11,7 +11,7 @@ const RecomendPosts = ({next, previous}) => {
       >
         <div>
             Anterior <br/>
-            <h1 className='h5'>{previous.frontmatter.title}</h1>
+            <h1 className='h5'>{previous.title}</h1>
         </div>
         
       </S.RecommendedLink>)}
@@ -22,7 +22,7 @@ const RecomendPosts = ({next, previous}) => {
       >
         <div>
             Próximo <br/>
-            <h1 className='h5'>{next.frontmatter.title}</h1>
+            <h1 className='h5'>{next.title}</h1>
         </div>
       </S.RecommendedLink>
       )}

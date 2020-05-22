@@ -25,32 +25,23 @@ const NavBar = () => {
           }
         }
       }
-      allMarkdownRemark(
+      allStrapiPosts(
         sort: { 
-          order: DESC, fields: frontmatter___date 
-        }
-        filter: {
-          fileAbsolutePath: { glob: "**/posts/*.md" }
+          order: DESC, fields: date 
         }) {
         edges {
           node {
-            excerpt(pruneLength: 30)
-            frontmatter {
               title
               date(formatString: "DD [/] MM [/] YYYY")
               tags
-            }
-
-            fields {
-              slug
-            }
+              id
           }
         }
       }
     }
   `)
   const menuLink = data.site.siteMetadata
-  const allPosts = data.allMarkdownRemark.edges
+  const allPosts = data.allStrapiPosts.edges
 
   const emptyQuery = ""
 
@@ -65,12 +56,11 @@ const NavBar = () => {
     const posts = allPosts || []
 
     const filteredData = posts.filter(post => {
-      const { title, tags } = post.node.frontmatter
+      const { title, tags } = post.node
       return (
         title.toLowerCase().includes(query.toLowerCase()) ||
         (tags &&
           tags
-            .join("")
             .toLowerCase()
             .includes(query.toLowerCase()))
       )
@@ -133,19 +123,16 @@ const NavBar = () => {
               </MDBDropdownToggle>
               <MDBDropdownMenu basic>
                 {posts.map(({node}, i) => {
-                  const { excerpt } = node
-                  const { title, date, tags } = node.frontmatter
-
-                  const { slug } = node.fields
+                  const { title, description, date, id, tags } = node
                   return(
                     <div key={i}>
-                      <Link id='link' to={slug}>
+                      <Link id='link' to={id}>
                         <MDBDropdownItem>
                           <b>{title}</b> <br />
                           <p style={{whiteSpace: 'break-spaces',  
                                     fontSize: '0.8rem'
                         }}>
-                            {excerpt}
+                            {description}
                           </p> <br />
                           <div style={{fontSize: '.8rem'}}>
                             <mark style={{

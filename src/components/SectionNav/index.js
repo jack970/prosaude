@@ -7,31 +7,23 @@ import Img from 'gatsby-image'
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
     query allPosts {
-      allMarkdownRemark(limit: 3, sort: {fields: frontmatter___date, order: DESC}
-        filter: {
-          fileAbsolutePath: { glob: "**/posts/*.md" }
-        }) {
+      allStrapiPosts(limit: 3, sort: {fields: date, order: DESC}) {
         edges {
           node {
-            excerpt(pruneLength: 50)
-            frontmatter {
               thumbnail {
                 childImageSharp {
                     fluid(maxWidth: 1000) {
-                        ...GatsbyImageSharpFluid_tracedSVG
-                    }
-                }
-            }
+                        ...GatsbyImageSharpFluid
+                      }
+                  }
+              }
               date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
               title
-            }
-            fields {
-              slug
+              id
             }
           }
         }
-      }
-    }    
+      }    
   `)
   
   return (
@@ -49,22 +41,22 @@ const SectionPage = () => {
           }}
       >
         <MDBCarouselInner>
-          {data.allMarkdownRemark.edges.map(({node}, i) => (
+          {data.allStrapiPosts.edges.map(({node}, i) => (
             <MDBCarouselItem itemId={i + 1} key={i}>
-              <Link to={node.fields.slug}>
+              <Link to={node.id}>
                 <MDBView style={{cursor: 'pointer'}}>
                     <Img
-                      fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
-                      alt={node.frontmatter.title}
+                      fluid={node.thumbnail.childImageSharp.fluid}
+                      alt={node.title}
 
                       style={{height: '15rem'}}
                     />
                     <MDBMask overlay="orange-slight" className="flex-center"/>
                 </MDBView>
                 <MDBCarouselCaption>
-                  <h3 className="h4">{node.frontmatter.title}</h3>
+                  <h3 className="h4">{node.title}</h3>
                   <h4 className='h4-responsive' style={{fontWeight: '600'}}>{node.excerpt}</h4>
-                  <p>{node.frontmatter.date}</p>
+                  <p>{node.date}</p>
                 </MDBCarouselCaption>
               </Link>
             </MDBCarouselItem>

@@ -8,7 +8,7 @@ import {MDBCard, MDBCardBody} from 'mdbreact'
 
 const Speciality = ({ data, pageContext }) => {
     const { speciality } = pageContext
-    const postList = data.allMarkdownRemark.edges
+    const postList = data.allStrapiGuias.edges
 
     return(
         <Layout>
@@ -24,11 +24,11 @@ const Speciality = ({ data, pageContext }) => {
                 </p>
                     { postList.map(({node}, i) =>(
                         <SpecialityItem key = {i}
-                            doctor={node.frontmatter.doctor}
-                            clinic={node.frontmatter.clinic}
-                            speciality={node.frontmatter.speciality}
-                            address={node.frontmatter.address}
-                            tel={node.frontmatter.tel}
+                            doctor={node.Medico}
+                            clinic={node.Clinica}
+                            speciality={node.Especialidade}
+                            address={node.Endereco}
+                            tel={node.Telefone}
                         />
                     ))}
                 </MDBCardBody>
@@ -39,23 +39,16 @@ const Speciality = ({ data, pageContext }) => {
 
 export const query = graphql`
     query Speciality($speciality: String!) {
-        allMarkdownRemark(limit: 2000, sort: {fields: [frontmatter___date], order: DESC}, 
-        filter: {
-            fileAbsolutePath: { glob: "**/guia-medico/*.md" }
-            frontmatter: {speciality: { in: [$speciality]
+        allStrapiGuias(limit: 2000, filter: {Especialidade: {in: [$speciality]}}) {
+        edges {
+            node {
+                Medico
+                Telefone
+                Endereco
+                Clinica
+                Especialidade
             }
-        }}) {
-            edges {
-                node {
-                    frontmatter {
-                        doctor
-                        clinic
-                        speciality
-                        address
-                        tel
-                    }
-                }
-            }
+        }
         }
     }
 `

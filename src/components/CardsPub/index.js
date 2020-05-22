@@ -6,36 +6,31 @@ import { MDBRow, MDBCol } from 'mdbreact';
 const CardsPub = () => {
 
     const data = useStaticQuery(graphql`
-        query CardsPub {
-            allMarkdownRemark(limit: 3, 
-            filter: {frontmatter: {tags: {eq: "Publicações"}}}
-            sort: {order: DESC, fields: [frontmatter___date]}
-            ) {
-            edges {
-                node {
-                excerpt
-                frontmatter {
-                    thumbnail {
-                        childImageSharp {
-                            fluid(maxWidth: 300) {
-                                ...GatsbyImageSharpFluid_tracedSVG
-                            }
+    query CardsPub {
+        allStrapiPosts(limit: 3, 
+        filter: {tags: {eq: "Publicações"}}
+        sort: {order: DESC, fields: date}
+        ) {
+        edges {
+            node {
+                thumbnail {
+                    childImageSharp {
+                        fluid(maxWidth: 300) {
+                           src
                         }
                     }
-                    date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
-                    title
-                    description
                 }
-                fields {
-                    slug
-                }
-                }
+                date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
+                title
+                description
+                  id
             }
-            }
+          }
         }
+    }
     `)
 
-    const cardsPub = data.allMarkdownRemark.edges
+    const cardsPub = data.allStrapiPosts.edges
     return (
     <>
         <MDBRow style={{marginTop: '5rem'}}>
@@ -47,11 +42,11 @@ const CardsPub = () => {
         <MDBRow>
             { cardsPub.map(({node}, i) => (
                 <Cards key={i}
-                title={node.frontmatter.title}
+                title={node.title}
                 description={node.excerpt}
-                thumbnail={node.frontmatter.thumbnail.childImageSharp.fluid}
-                slug={node.fields.slug}
-                date={node.frontmatter.date}
+                thumbnail={node.thumbnail.childImageSharp.fluid}
+                slug={node.id}
+                date={node.date}
                 />
             ))}
         </MDBRow>

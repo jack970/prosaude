@@ -8,30 +8,23 @@ import { useStaticQuery, graphql } from "gatsby";
 const Search = () => {
     const data = useStaticQuery(graphql`
     {
-        posts: allMarkdownRemark(
-            filter : {
-                fileAbsolutePath: { glob: "**/posts/*.md" }
-            }
+        posts: allStrapiPosts(
             sort: { 
-                fields: frontmatter___date, order: DESC 
+                fields: date, order: DESC 
             }){
             edges {
                 node {
-                    fields {
-                        slug
-                    }
-                    frontmatter {
-                        title
-                        thumbnail {
-                            childImageSharp {
-                                fluid(maxWidth: 300) {
-                                    ...GatsbyImageSharpFluid_tracedSVG
-                                }
+                    id
+                    title
+                    thumbnail {
+                        childImageSharp {
+                            fluid(maxWidth: 300) {
+                                ...GatsbyImageSharpFluid_tracedSVG
                             }
                         }
-                        date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-                        description
                     }
+                    date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+                    description
                 }
             }
         }
@@ -53,13 +46,12 @@ const Search = () => {
         const posts = allPosts || []
     
         const filteredData = posts.filter(post => {
-        const { title, description, tags } = post.node.frontmatter
+        const { title, description, tags } = post.node
         return (
-            description.toLowerCase().includes(query.toLowerCase()) ||
             title.toLowerCase().includes(query.toLowerCase()) ||
+            description.toLowerCase().includes(query.toLowerCase()) ||
             (tags &&
             tags
-                .join("")
                 .toLowerCase()
                 .includes(query.toLowerCase()))
         )
@@ -79,13 +71,12 @@ return(
     <S.SearchWrapper>
         <MDBInput label="Pesquisar..." icon="search" background size="lg" onChange={handleInputChange}/>
         {posts.map(({node}, i) => {
-            const {slug} = node.fields
-            const {fluid} = node.frontmatter.thumbnail.childImageSharp
-            const { title, date, description } = node.frontmatter
+            const {fluid} = node.thumbnail.childImageSharp
+            const { title, date, description, id } = node
 
             return(
             <PostItem key={i}
-                slug={slug}
+                slug={id}
                 thumbnail={fluid}
                 title={title}
                 date={date}
