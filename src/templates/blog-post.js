@@ -22,7 +22,7 @@ export const Divisao = styled.div`
 export const DivPost = styled.div``
 
 const BlogPost = ({data, pageContext}) => {
-    const post = data.strapiPosts
+    const post = data.strapiProsaudePosts
     const next = pageContext.next
     const previous = pageContext.previous
 
@@ -51,7 +51,7 @@ const BlogPost = ({data, pageContext}) => {
                         </S.PostDescription>
                     </S.PostHeader>
                     <S.MainContent>
-                        <Reactmarkdown source={post.conteudo}/>
+                        <Reactmarkdown source={post.content}/>
                     </S.MainContent>
                     <RecomendPosts next={next} previous={previous}/>
                 </DivPost>
@@ -63,11 +63,11 @@ const BlogPost = ({data, pageContext}) => {
 
 export const query = graphql`
     query Post($id: String!) {
-        strapiPosts(id: {eq: $id}) {
+        strapiProsaudePosts(id: {eq: $id}) {
             title
             date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
             description
-            conteudo
+            content
             tags
             thumbnail {
                 childImageSharp {

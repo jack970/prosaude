@@ -7,7 +7,7 @@ exports.createPages = async ({ graphql, actions }) => {
     return graphql(
       `
       {
-        postRemark: allStrapiPosts(sort: {order: DESC, fields: date}) {
+        postRemark: allStrapiProsaudePosts(sort: {order: DESC, fields: date}) {
           edges {
             node {
               id
@@ -23,13 +23,13 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
-        tagsGroup: allStrapiPosts {
+        tagsGroup: allStrapiProsaudePosts {
           group(field: tags) {
             fieldValue
             totalCount
           }
         }
-        especialidadesGroup: allStrapiGuias {
+        especialidadesGroup: allStrapiProsaudeGuias {
           group(field: Especialidade) {
             fieldValue
             totalCount

@@ -67,20 +67,6 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `guia`,
-        path: `${__dirname}/guia-medico`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `${__dirname}/posts`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
@@ -116,8 +102,8 @@ module.exports = {
         apiURL: "http://localhost:1337",
         contentTypes: [
           // List of the Content Types you want to be able to request from Gatsby.
-          "posts",
-          "guias"
+          "prosaude-posts",
+          "prosaude-guias"
         ],
         queryLimit: 1000,
       },

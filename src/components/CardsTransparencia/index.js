@@ -7,7 +7,7 @@ const CardsTransparencia = () => {
 
     const data = useStaticQuery(graphql`
       query CardsTransparencia {
-        allStrapiPosts(limit: 2, 
+        allStrapiProsaudePosts(limit: 2, 
         filter: {tags: {eq: "Institucional"}}
         sort: {order: DESC, fields: date}
         ) {
@@ -22,7 +22,7 @@ const CardsTransparencia = () => {
     }
     `)
 
-    const cadsTransparencia = data.allStrapiPosts.edges
+    const cadsTransparencia = data.allStrapiProsaudePosts.edges
 return (
 <MDBContainer>
     <MDBRow style={{marginTop: '4rem'}}>

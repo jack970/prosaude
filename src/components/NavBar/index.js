@@ -26,7 +26,7 @@ const NavBar = () => {
           }
         }
       }
-      allStrapiPosts(
+      allStrapiProsaudePosts(
         sort: { 
           order: DESC, fields: date 
         }) {
@@ -43,7 +43,7 @@ const NavBar = () => {
     }
   `)
   const menuLink = data.site.siteMetadata
-  const allPosts = data.allStrapiPosts.edges
+  const allPosts = data.allStrapiProsaudePosts.edges
 
   const emptyQuery = ""
 

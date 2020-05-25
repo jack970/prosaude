@@ -8,7 +8,7 @@ import { useStaticQuery, graphql } from "gatsby";
 const Search = () => {
     const data = useStaticQuery(graphql`
     {
-        posts: allStrapiPosts(
+        posts: allStrapiProsaudePosts(
             sort: { 
                 fields: date, order: DESC 
             }){

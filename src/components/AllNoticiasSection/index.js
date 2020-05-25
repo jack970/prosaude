@@ -21,7 +21,7 @@ const SectionNoticias = () => {
 
     const data = useStaticQuery(graphql`
         query SectionNotices {
-            allStrapiPosts(limit: 2, 
+            allStrapiProsaudePosts(limit: 2, 
                 filter: {tags: {eq: "Notícias"}}
                 sort: {order: DESC, fields: date}
             ) {
@@ -42,7 +42,7 @@ const SectionNoticias = () => {
             }
             }
     `)
-    const info = data.allStrapiPosts.edges
+    const info = data.allStrapiProsaudePosts.edges
   return (
     <MDBRow style={{textAlign: '-webkit-right',
     marginLeft: '0',

@@ -8,7 +8,7 @@ import {MDBCard, MDBCardBody} from 'mdbreact'
 
 const Speciality = ({ data, pageContext }) => {
     const { speciality } = pageContext
-    const postList = data.allStrapiGuias.edges
+    const postList = data.allStrapiProsaudeGuias.edges
 
     return(
         <Layout>
@@ -39,7 +39,7 @@ const Speciality = ({ data, pageContext }) => {
 
 export const query = graphql`
     query Speciality($speciality: String!) {
-        allStrapiGuias(limit: 2000, filter: {Especialidade: {in: [$speciality]}}) {
+        allStrapiProsaudeGuias(limit: 2000, filter: {Especialidade: {in: [$speciality]}}) {
         edges {
             node {
                 Medico

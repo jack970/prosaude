@@ -8,7 +8,7 @@ import kebabCase from "lodash/kebabCase"
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
     query allPosts {
-      allStrapiPosts(limit: 3, sort: {fields: date, order: DESC}) {
+      allStrapiProsaudePosts(limit: 3, sort: {fields: date, order: DESC}) {
         edges {
           node {
               thumbnail {
@@ -42,7 +42,7 @@ const SectionPage = () => {
           }}
       >
         <MDBCarouselInner>
-          {data.allStrapiPosts.edges.map(({node}, i) => (
+          {data.allStrapiProsaudePosts.edges.map(({node}, i) => (
             <MDBCarouselItem itemId={i + 1} key={i}>
               <Link to={`/${kebabCase(node.title)}`}>
                 <MDBView style={{cursor: 'pointer'}}>

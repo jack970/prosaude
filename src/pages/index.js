@@ -10,7 +10,7 @@ import CardsTransparencia from "../components/CardsTransparencia"
 import kebabCase from "lodash/kebabCase"
 
 const IndexPage = ({data}) => {
-  const postList = data.allStrapiPosts.edges
+  const postList = data.allStrapiProsaudePosts.edges
   return (
   <Layout>
     <SEO title="Início" />
@@ -41,7 +41,7 @@ export default IndexPage
 
 export const PostListQuery = graphql`
   query PostList {
-    allStrapiPosts(limit: 3, 
+    allStrapiProsaudePosts(limit: 3, 
       filter: {tags: {eq: "Notícias"}}
       sort: {order: DESC, fields: date}
       ) {

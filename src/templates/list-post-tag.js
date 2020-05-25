@@ -22,7 +22,7 @@ export const Divisao = styled.div`
 export const DivPost = styled.div``
 
 const ListTagsPosts = props => {
-    const postList = props.data.allStrapiPosts.edges
+    const postList = props.data.allStrapiProsaudePosts.edges
 
     const {tag, currentPage, numPages } = props.pageContext
     const link = `/${kebabCase(tag)}`
@@ -72,7 +72,7 @@ export const query = graphql`
     query Tags($tag: String!, 
                 $limit: Int!, 
                 $skip: Int!) {
-        allStrapiPosts(
+        allStrapiProsaudePosts(
             limit: $limit, 
             skip: $skip
             sort: {fields: [date], 
