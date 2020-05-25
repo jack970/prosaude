@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import Cards from "../components/Cards"
 import CardsPub from "../components/CardsPub"
 import CardsTransparencia from "../components/CardsTransparencia"
+import kebabCase from "lodash/kebabCase"
 
 const IndexPage = ({data}) => {
   const postList = data.allStrapiPosts.edges
@@ -23,9 +24,9 @@ const IndexPage = ({data}) => {
         { postList.map(({node}, i) => (
           <Cards key={i}
           title={node.title}
-          description={node.excerpt}
+          description={node.description}
           thumbnail={node.thumbnail.childImageSharp.fluid}
-          slug={node.id}
+          slug={`/${kebabCase(node.title)}`}
           date={node.date}
           />
         ))}
@@ -48,7 +49,7 @@ export const PostListQuery = graphql`
         node {
             thumbnail {
               childImageSharp {
-                  fluid(maxWidth: 1080) {
+                  fluid(maxWidth: 300, maxHeight: 250) {
                       ...GatsbyImageSharpFluid_tracedSVG
                   }
               }

@@ -11,12 +11,11 @@ exports.createPages = async ({ graphql, actions }) => {
           edges {
             node {
               id
+              title
             }
             next {
               title
-              thumbnail {
-                publicURL
-              }
+              id
             }
             previous {
               id
@@ -46,7 +45,7 @@ exports.createPages = async ({ graphql, actions }) => {
         //Gera página dos posts
         posts.forEach(({node, next, previous}) => {
             createPage ({
-                path: node.id,
+                path: `/${_.kebabCase(node.title)}`,
                 component: path.resolve('./src/templates/blog-post.js'),
                 context: {
                     id: node.id,

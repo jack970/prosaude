@@ -25,6 +25,7 @@ const BlogPost = ({data, pageContext}) => {
     const post = data.strapiPosts
     const next = pageContext.next
     const previous = pageContext.previous
+
     return(
         <Layout>
             <SEO title={post.title} 
@@ -70,7 +71,7 @@ export const query = graphql`
             tags
             thumbnail {
                 childImageSharp {
-                    fluid(maxWidth: 1000) {
+                    fluid(maxWidth: 1000, maxHeight: 1000) {
                         ...GatsbyImageSharpFluid
                     }
                 }

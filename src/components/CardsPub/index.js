@@ -2,7 +2,7 @@ import React from 'react';
 import Cards from '../Cards'
 import { graphql, useStaticQuery } from 'gatsby'
 import { MDBRow, MDBCol } from 'mdbreact';
-
+import kebabCase from 'lodash/kebabCase'
 const CardsPub = () => {
 
     const data = useStaticQuery(graphql`
@@ -15,15 +15,15 @@ const CardsPub = () => {
             node {
                 thumbnail {
                     childImageSharp {
-                        fluid(maxWidth: 300) {
-                           src
+                        fluid(maxWidth: 300, maxHeight: 240) {
+                            ...GatsbyImageSharpFluid_tracedSVG
                         }
                     }
                 }
                 date(locale:"pt-br" ,formatString: "DD [de] MMMM [de] YYYY")
                 title
                 description
-                  id
+                id
             }
           }
         }
@@ -42,11 +42,11 @@ const CardsPub = () => {
         <MDBRow>
             { cardsPub.map(({node}, i) => (
                 <Cards key={i}
-                title={node.title}
-                description={node.excerpt}
-                thumbnail={node.thumbnail.childImageSharp.fluid}
-                slug={node.id}
-                date={node.date}
+            title={node.title}
+            description={node.description}
+            thumbnail={node.thumbnail.childImageSharp.fluid}
+            slug={`/${kebabCase(node.title)}`}
+            date={node.date}
                 />
             ))}
         </MDBRow>

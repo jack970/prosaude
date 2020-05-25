@@ -4,6 +4,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 import media from 'styled-media-query'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import kebabCase from "lodash/kebabCase"
 
 export const Col = styled.div`
     width: 13rem;
@@ -28,7 +29,7 @@ const SectionNoticias = () => {
                 node {
                     thumbnail {
                         childImageSharp {
-                            fluid(maxWidth: 300) {
+                            fluid(maxWidth: 300, maxHeight: 240) {
                                 ...GatsbyImageSharpFluid_tracedSVG
                             }
                         }
@@ -55,7 +56,7 @@ const SectionNoticias = () => {
             </div>
             {info.map(({node}, i) =>(
             <MDBCard style={{ marginBottom: '2rem' }} key={i}>
-                <Link to={node.id}>
+                <Link to={`/${kebabCase(node.title)}`}>
                     <Img className="img-fluid" 
                     fluid={node.thumbnail.childImageSharp.fluid}
                     waves />
@@ -63,8 +64,8 @@ const SectionNoticias = () => {
                 <MDBCardBody>
                     <MDBCardText>{node.date}</MDBCardText>
                     <MDBCardTitle>{node.title}</MDBCardTitle>
-                    <MDBCardText>{node.excerpt}</MDBCardText>
-                    <Link to={node.id}>
+                    <MDBCardText>{node.description}</MDBCardText>
+                    <Link to={`/${kebabCase(node.title)}`}>
                         <MDBBtn color='elegant'>Ler mais</MDBBtn>
                     </Link>
                 </MDBCardBody>

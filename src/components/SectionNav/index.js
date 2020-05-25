@@ -3,6 +3,7 @@ import { MDBCarousel, MDBCarouselInner, MDBMask,MDBCarouselItem, MDBView, MDBCar
 "mdbreact";
 import { useStaticQuery, graphql, Link} from 'gatsby'
 import Img from 'gatsby-image'
+import kebabCase from "lodash/kebabCase"
 
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
@@ -12,7 +13,7 @@ const SectionPage = () => {
           node {
               thumbnail {
                 childImageSharp {
-                    fluid(maxWidth: 1000) {
+                    fluid(maxWidth: 1000, maxHeight: 1000) {
                         ...GatsbyImageSharpFluid
                       }
                   }
@@ -43,7 +44,7 @@ const SectionPage = () => {
         <MDBCarouselInner>
           {data.allStrapiPosts.edges.map(({node}, i) => (
             <MDBCarouselItem itemId={i + 1} key={i}>
-              <Link to={node.id}>
+              <Link to={`/${kebabCase(node.title)}`}>
                 <MDBView style={{cursor: 'pointer'}}>
                     <Img
                       fluid={node.thumbnail.childImageSharp.fluid}
@@ -55,7 +56,7 @@ const SectionPage = () => {
                 </MDBView>
                 <MDBCarouselCaption>
                   <h3 className="h4">{node.title}</h3>
-                  <h4 className='h4-responsive' style={{fontWeight: '600'}}>{node.excerpt}</h4>
+                  <h4 className='h4-responsive' style={{fontWeight: '600'}}>{node.description}</h4>
                   <p>{node.date}</p>
                 </MDBCarouselCaption>
               </Link>

@@ -1,12 +1,14 @@
 import React from 'react';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCol, MDBRow, MDBContainer } from "mdbreact";
 import { useStaticQuery, graphql, Link} from 'gatsby'
+import kebabCase from "lodash/kebabCase"
+
 const CardsTransparencia = () => {
 
     const data = useStaticQuery(graphql`
       query CardsTransparencia {
         allStrapiPosts(limit: 2, 
-        filter: {tags: {eq: "Serviços"}}
+        filter: {tags: {eq: "Institucional"}}
         sort: {order: DESC, fields: date}
         ) {
         edges {
@@ -25,7 +27,7 @@ return (
 <MDBContainer>
     <MDBRow style={{marginTop: '4rem'}}>
         <MDBCol>
-            <h1 style={{fontWeight: '500'}}>Serviços</h1>
+            <h1 style={{fontWeight: '500'}}>Institucional</h1>
             <hr style={{borderTop: '2px solid #FD0'}} />
         </MDBCol>
     </MDBRow>
@@ -36,10 +38,10 @@ return (
             <MDBCardBody>
               <MDBCardTitle>{node.title}</MDBCardTitle>
               <MDBCardText>
-                {node.excerpt}
+                {node.description}
               </MDBCardText>
-              <Link to={node.id}>
-                <MDBBtn color="elegant">Ver Mais</MDBBtn>
+              <Link to={`/${kebabCase(node.title)}`}>
+                <MDBBtn color="amber">Ver Mais</MDBBtn>
               </Link>
             </MDBCardBody>
           </MDBCard>

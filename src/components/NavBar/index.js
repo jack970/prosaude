@@ -10,6 +10,7 @@ import {MDBNavbar,
   MDBDropdown, 
   MDBDropdownToggle} from "mdbreact";
 import { useStaticQuery, graphql, Link } from 'gatsby'
+import kebabCase from "lodash/kebabCase"
 
 const NavBar = () => {
   const data = useStaticQuery(graphql`
@@ -35,6 +36,7 @@ const NavBar = () => {
               date(formatString: "DD [/] MM [/] YYYY")
               tags
               id
+              description
           }
         }
       }
@@ -123,17 +125,19 @@ const NavBar = () => {
               </MDBDropdownToggle>
               <MDBDropdownMenu basic>
                 {posts.map(({node}, i) => {
-                  const { title, description, date, id, tags } = node
+                  const { title, description, date, tags } = node
                   return(
                     <div key={i}>
-                      <Link id='link' to={id}>
+                      <Link to={kebabCase(title)} id='link'>
                         <MDBDropdownItem>
                           <b>{title}</b> <br />
                           <p style={{whiteSpace: 'break-spaces',  
-                                    fontSize: '0.8rem'
+                                    fontSize: '0.8rem',
+                                    color: '#B2A3A0',
+                                    paddingLeft: '.4rem'
                         }}>
                             {description}
-                          </p> <br />
+                          </p>
                           <div style={{fontSize: '.8rem'}}>
                             <mark style={{
                                 backgroundColor: '#FDB700', 

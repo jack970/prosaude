@@ -18,7 +18,7 @@ const Search = () => {
                     title
                     thumbnail {
                         childImageSharp {
-                            fluid(maxWidth: 300) {
+                            fluid(maxWidth: 300, maxHeight: 200) {
                                 ...GatsbyImageSharpFluid_tracedSVG
                             }
                         }

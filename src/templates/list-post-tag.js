@@ -48,7 +48,7 @@ const ListTagsPosts = props => {
                             title={node.title}
                             description={node.description}
                             thumbnail={node.thumbnail.childImageSharp.fluid}
-                            slug={node.id}
+                            slug={`/${kebabCase(node.title)}`}
                             date={node.date}
                             />
                         ))}
@@ -83,7 +83,7 @@ export const query = graphql`
                         title
                         thumbnail {
                             childImageSharp {
-                                fluid(maxWidth: 1080) {
+                                fluid(maxWidth: 1080, maxHeight: 1080) {
                                     ...GatsbyImageSharpFluid_tracedSVG
                                 }
                             }
