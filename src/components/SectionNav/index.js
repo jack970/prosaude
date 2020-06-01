@@ -4,7 +4,6 @@ import { MDBCarousel, MDBCarouselInner, MDBMask,MDBCarouselItem, MDBView, MDBCar
 import { useStaticQuery, graphql, Link} from 'gatsby'
 import Img from 'gatsby-image'
 import kebabCase from "lodash/kebabCase"
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics'
 
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
@@ -44,14 +43,7 @@ const SectionPage = () => {
       >
         <MDBCarouselInner>
           {data.allStrapiProsaudePosts.edges.map(({node}, i) => (
-              <Link to={`/${kebabCase(node.title)}`}
-                onClick={ e =>{
-                  e.preventDefault()
-                  trackCustomEvent({
-                    category: "Imagem",
-                    action:"click",
-                    label: "A pessoa clicou na imagem"
-                })}} key={i}>
+              <Link to={`/${kebabCase(node.title)}`} key={i}>
                 <MDBCarouselItem itemId={i + 1}>
                   <MDBView style={{cursor: 'pointer'}}>
                       <Img
