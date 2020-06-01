@@ -15,14 +15,13 @@ export const MenuLinksList = styled.ul`
     max-width: 100rem;
     margin: 0 auto;
 
+    ${media.lessThan('large')`
+            padding: 0 2rem 0;
+        `}
+
     #title {
         float: left;
         line-height: 1.4rem;
-
-        ${media.lessThan('large')`
-        float:none;
-        text-align: center;
-        `}
     }
 
     #ul-tema{
@@ -72,8 +71,5 @@ export const MenuLinksLink = styled(Link)`
 export const MenuLinksGroup = styled.div`
     width: -webkit-fill-available;
 
-    ${media.lessThan('large')`
-        display: none
-    
-    `}
+   
 `

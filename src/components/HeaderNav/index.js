@@ -16,6 +16,15 @@ const HeaderNav = ({title}) => (
                 </li>
             </div>
             <S.MenuLinksGroup>
+            <ul style={{padding: '.3rem', float: 'right'}}>
+                <li>
+                    <p id='title'>
+                        <a href='https://webmail.prosaudecatalao.go.gov.br/#/login' style={{color: '#fff', textDecoration: 'none'}}>
+                            <b>WEBMAIL</b>
+                        </a>
+                    </p>
+                </li>
+            </ul>
             </S.MenuLinksGroup>
         </S.MenuLinksList>
     </S.MenuLinksWrapper>
