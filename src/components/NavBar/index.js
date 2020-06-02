@@ -84,9 +84,10 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+
+
   return (
-    <S.AcessarClasses>
-    <MDBNavbar color="transparent" light text='center' expand="md" style={{padding: '0.5rem 5rem 0.5rem 1rem'}}>
+    <MDBNavbar color="transparent" light text='center' expand="md">
       <MDBNavbarToggler onClick={toggle} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav> 
@@ -111,8 +112,8 @@ const NavBar = () => {
         </MDBNavbarNav>
         <MDBNavbarNav right>
           <MDBDropdown>
-            <form action='/pesquisa' method="post" name="pesquisa">
-              <MDBDropdownToggle nav id="search">
+            <form action='/pesquisa'>
+              <MDBDropdownToggle nav>
                 <S.Input
                   type="text" 
                   placeholder=""
@@ -123,46 +124,48 @@ const NavBar = () => {
                     <i className="fa fa-search searchicon" aria-hidden="true" />
                 </S.Span> 
               </MDBDropdownToggle>
-              <MDBDropdownMenu basic>
-                {posts.map(({node}, i) => {
-                  const { title, description, date, tags } = node
-                  return(
-                    <div key={i}>
-                      <Link to={kebabCase(title)} id='link'>
-                        <MDBDropdownItem>
-                          <b>{title}</b> <br />
-                          <p style={{whiteSpace: 'break-spaces',  
-                                    fontSize: '0.8rem',
-                                    color: '#B2A3A0',
-                                    paddingLeft: '.4rem'
-                        }}>
-                            {description}
-                          </p>
-                          <div style={{fontSize: '.8rem'}}>
-                            <mark style={{
-                                backgroundColor: '#FDB700', 
-                                fontWeight: '700',
-                                color: '#fff',
-                                fontSize: '14px ',
-                                padding: '0 5px', 
-                                borderRadius: '2rem'}}
-                              >{tags}</mark>
-                            <p className="dark-grey-text" style={{fontWeight: '500'}}>
-                                {date}
+              {console.log(posts === [])}
+              <S.MenuDropdown show={hasSearchResults}>
+                  {posts.map(({node}, i) => {
+                    const { title, description, date, tags } = node
+
+                    return(
+                      <div key={i}>
+                        <Link to={kebabCase(title)} id='link'>
+                            <b style={{fontWeight: '700', 
+                                        color: '#fdb700',         
+                            }}>    
+                              {title}</b> <br />
+                            <p style={{whiteSpace: 'break-spaces',  
+                                      fontSize: '0.8rem',
+                                      color: '#222',
+                                      padding: '.6rem'
+                            }}>
+                              {description}
                             </p>
-                          </div>
-                          <MDBDropdownItem divider />
-                        </MDBDropdownItem>
-                      </Link>
-                    </div>
-                )})}
-              </MDBDropdownMenu>
+                            <div style={{fontSize: '.8rem'}}>
+                              <mark style={{
+                                  backgroundColor: '#FDB700', 
+                                  fontWeight: '700',
+                                  color: '#fff',
+                                  fontSize: '14px ',
+                                  padding: '0 5px', 
+                                  borderRadius: '2rem'}}
+                                >{tags}</mark>
+                              <p className="dark-grey-text" style={{fontWeight: '500'}}>
+                                  {date}
+                              </p>
+                            </div>
+                            <MDBDropdownItem divider />
+                        </Link>
+                      </div>
+                  )})}
+              </S.MenuDropdown>
             </form>
           </MDBDropdown>
         </MDBNavbarNav>
       </MDBCollapse>
     </MDBNavbar>
-    </S.AcessarClasses>
   )
 }
 export default NavBar;

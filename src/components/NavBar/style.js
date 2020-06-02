@@ -1,17 +1,8 @@
 import styled from 'styled-components'
 import media from 'styled-media-query'
 
-export const AcessarClasses = styled.div`
-  #search {
-    padding: 0;
-  }
-  #link {
-    padding: 0;
-  }
-`
 export const Span = styled.span`
   transition: display 4s ease-in-out;
-
   position: absolute;
   right: 1rem;
   line-height: 2.2rem;
@@ -20,6 +11,25 @@ export const Span = styled.span`
   ${media.lessThan("767px")`
         left: .6rem;
   `}
+`
+
+export const MenuDropdown = styled.div`
+
+    display: ${props => (props.show ? 'block' : 'none')};
+    background: #FFF;
+    padding: 0 8px;
+    border-radius: 10px;
+    position: absolute;
+    min-width: 100px;
+    z-index: 100;
+    outline: none;
+    color: #fff;
+    border: 1px solid #e0d7d7;
+    cursor: pointer;
+
+    :active {
+      background: #ffffff6e;
+    }
 `
 
 export const Input = styled.input`
@@ -46,13 +56,9 @@ export const Input = styled.input`
     }
 
     ${media.lessThan("767px")`
-        :focus {
-          width: 100%;
-      }
-  `}
-
-    :focus+${Span},
-    :active+${Span} {
-      display: none;
-    }
+      padding-left: 2rem;
+          :focus {
+            width: 100%;
+        }
+    `}
 `
