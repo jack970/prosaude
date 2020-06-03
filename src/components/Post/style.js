@@ -45,6 +45,17 @@ export const PostDate = styled.p`
 `}
 `
 
+export const PostCategory = styled.p `
+  font-size: 1.5rem;
+  font-weight: 100;
+  padding: 1rem 1.4rem;
+  ${media.lessThan('large')`
+  font-size: 1.3rem;
+  padding: .5rem 1rem;
+`}
+
+`
+
 export const MainContent = styled.section`
   margin: auto;
   max-width: 70rem;

@@ -78,13 +78,10 @@ const NavBar = () => {
   const { filteredData, query } = state
   const hasSearchResults = filteredData && query !== emptyQuery
   const posts = hasSearchResults ? filteredData : []
-  
 
   //dropdown mobile
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
-
 
   return (
     <MDBNavbar color="transparent" light text='center' expand="md">
@@ -124,7 +121,6 @@ const NavBar = () => {
                     <i className="fa fa-search searchicon" aria-hidden="true" />
                 </S.Span> 
               </MDBDropdownToggle>
-              {console.log(posts === [])}
               <S.MenuDropdown show={hasSearchResults}>
                   {posts.map(({node}, i) => {
                     const { title, description, date, tags } = node

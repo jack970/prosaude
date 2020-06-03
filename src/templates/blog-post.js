@@ -13,6 +13,7 @@ import Reactmarkdown from 'react-markdown'
 
 export const Divisao = styled.div`
     display: flex;
+    justify-content: space-between;
 
     ${media.lessThan('large')`
         display:block;
@@ -34,13 +35,13 @@ const BlogPost = ({data, pageContext}) => {
             <Divisao>
                 <DivPost>
                     <S.PostHeader>
-                        <S.PostDate>
+                        <S.PostCategory>
                             <strong>Categorias:</strong>&nbsp;{` `}
-                                <Link to={`/${kebabCase(post.tags)}`}>
-                                    <MDBBadge color="warning">{post.tags}</MDBBadge>&nbsp;
-                                </Link>
-                            <br/>
-                            <br/>
+                            <Link to={`/${kebabCase(post.tags)}`}>
+                                <MDBBadge color="warning">{post.tags}</MDBBadge>&nbsp;
+                            </Link>
+                        </S.PostCategory>
+                        <S.PostDate>
                             Publicado em {post.date}
                         </S.PostDate>
                         <S.PostTitle>

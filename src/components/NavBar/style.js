@@ -14,7 +14,6 @@ export const Span = styled.span`
 `
 
 export const MenuDropdown = styled.div`
-
     display: ${props => (props.show ? 'block' : 'none')};
     background: #FFF;
     padding: 0 8px;
