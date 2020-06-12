@@ -20,7 +20,7 @@ const HeaderNav = ({title}) => (
                 <li>
                     <p id='title'>
                         <a href='https://webmail.prosaudecatalao.go.gov.br/#/login' style={{color: '#fff', textDecoration: 'none'}}>
-                            <b style={{fontWeight: '500'}}>WEBMAIL</b>
+                            <b style={{fontWeight: '700'}}>WEBMAIL</b>
                         </a>
                     </p>
                 </li>

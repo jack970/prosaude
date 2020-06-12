@@ -14,7 +14,7 @@ const especialidadePage = ({ data }) => {
             <SEO title="Todas as Especialidades"/>
             <MDBRow>
                 <MDBCol>
-                    <h1 style={{fontWeight: '500'}}>Guia-Médico </h1>
+                    <h1 style={{fontWeight: '500'}}>Guia Médico </h1>
                     <hr style={{borderTop: '2px solid #FD0'}} />
                 </MDBCol>
             </MDBRow>

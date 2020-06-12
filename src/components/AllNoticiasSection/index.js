@@ -21,7 +21,7 @@ const SectionNoticias = () => {
 
     const data = useStaticQuery(graphql`
         query SectionNotices {
-            allStrapiProsaudePosts(limit: 2, 
+            allStrapiProsaudePosts(limit: 4, 
                 filter: {tags: {eq: "Notícias"}}
                 sort: {order: DESC, fields: date}
             ) {
@@ -66,7 +66,7 @@ const SectionNoticias = () => {
                     <MDBCardTitle>{node.title}</MDBCardTitle>
                     <MDBCardText>{node.description}</MDBCardText>
                     <Link to={`/${kebabCase(node.title)}`}>
-                        <MDBBtn color='elegant'>Ler mais</MDBBtn>
+                        <MDBBtn color='orange'>Ler mais</MDBBtn>
                     </Link>
                 </MDBCardBody>
             </MDBCard>

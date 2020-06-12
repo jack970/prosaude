@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `PROSAUDE`,
-    description: `Programa de assistência aos servidores de Catalão.`,
-    address: 'Travessa Píres de Matos, 50 - Amambai, Campo Grande - MS, Brasil CEP: 79005-060',
-    author: `@gatsbyjs`,
-    siteUrl: 'https://www.prosaudetest.netlify.app',
+    description: `Programa de Assistência aos Servidores de Catalão.`,
+    address: 'Rua Coronel Afonso Paranhos - St. Central, Catalão - GO, 75701-470',
+    author: `Work - Informática`,
+    siteUrl: 'https://www.prosaudecatalao.go.gov.br',
     menuHeader: [
       {
         label: 'Institucional',
@@ -112,13 +112,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `PROSAUDE - Programa de Assistência aos Servidores de Catalão.`,
+        short_name: `PROSAUDE`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#f4f9fc`,
+        theme_color: `#f4f9fc`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo-prosaude.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
