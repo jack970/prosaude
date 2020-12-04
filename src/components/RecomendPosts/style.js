@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Link } from 'gatsby'
+import styled from "styled-components"
+import { Link } from "gatsby"
 
 export const RecommendedWrapper = styled.section`
   border-bottom: 1px solid black;
@@ -17,7 +17,7 @@ export const RecommendedLink = styled(Link)`
   padding: 2rem 1rem;
   text-decoration: none;
   width: 50%;
- 
+
   &:hover {
     background: #dbe2e8;
   }
@@ -32,11 +32,11 @@ export const RecommendedLink = styled(Link)`
     border-left: 1px solid #dbe2e8;
   }
   &.previous:before {
-    content: '\\2190';
+    content: "\\2190";
     margin-right: 0.5rem;
   }
   &.next:after {
-    content: '\\2192';
+    content: "\\2192";
     margin-left: 0.5rem;
   }
 `

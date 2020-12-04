@@ -4,9 +4,9 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import InnerHeader from "../InnerHeader"
 import HeaderNav from "../HeaderNav"
-import SectionNav from '../SectionNav'
+import SectionNav from "../SectionNav"
 import GlobalStyles from "../../Styles/global"
-import NavBar from '../NavBar'
+import NavBar from "../NavBar"
 import Footer from "../Footer"
 
 const Layout = ({ children }) => {
@@ -25,11 +25,11 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyles />
-      <HeaderNav title={data.site.siteMetadata.title}/>
-      <InnerHeader 
-      title={data.site.siteMetadata.title}
-      description={data.site.siteMetadata.description}
-        />
+      <HeaderNav title={data.site.siteMetadata.title} />
+      <InnerHeader
+        title={data.site.siteMetadata.title}
+        description={data.site.siteMetadata.description}
+      />
       <NavBar />
       <SectionNav />
       <div
@@ -41,10 +41,10 @@ const Layout = ({ children }) => {
       >
         <main>{children}</main>
       </div>
-      <Footer 
-      title={data.site.siteMetadata.title}
-      description={data.site.siteMetadata.description}
-      address = {data.site.siteMetadata.address}
+      <Footer
+        title={data.site.siteMetadata.title}
+        description={data.site.siteMetadata.description}
+        address={data.site.siteMetadata.address}
       />
     </>
   )

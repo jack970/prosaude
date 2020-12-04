@@ -33,7 +33,7 @@ export const SearchWrapper = styled.section`
     padding: 0.5rem;
     width: 100%;
     &::placeholder {
-      color: #F4F9FC;
+      color: #f4f9fc;
     }
   }
   .ais-SearchBox-submit,
