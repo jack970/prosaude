@@ -45,7 +45,7 @@ const CardsPub = () => {
             key={i}
             title={node.title}
             description={node.description}
-            thumbnail={node.image.childImageSharp.fluid}
+            image={node.image.childImageSharp.fluid}
             slug={`/${kebabCase(node.title)}`}
             date={node.data}
           />
