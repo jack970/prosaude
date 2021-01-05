@@ -2,35 +2,35 @@ import React from "react"
 import Cards from "../Cards"
 import { graphql, useStaticQuery } from "gatsby"
 import { MDBRow, MDBCol } from "mdbreact"
-import kebabCase from "lodash/kebabCase"
+
 const CardsPub = () => {
   const data = useStaticQuery(graphql`
-    query CardsPub {
-      allStrapiProsaudePosts(
-        limit: 3
-        filter: { tags: { eq: "Publicações" } }
-        sort: { order: DESC, fields: data }
-      ) {
-        edges {
-          node {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 300, maxHeight: 240) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
-              }
-            }
-            data(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-            title
+  query CardsPub {
+    allMarkdownRemark(
+      limit: 4
+      filter: {
+        frontmatter: {
+          tags: {in: ["Publicações"]}
+      }}
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
             description
-            id
+            title
           }
         }
       }
     }
+  }
   `)
 
-  const cardsPub = data.allStrapiProsaudePosts.edges
+  const cardsPub = data.allMarkdownRemark.edges
   return (
     <>
       <MDBRow style={{ marginTop: "5rem" }}>
@@ -43,11 +43,10 @@ const CardsPub = () => {
         {cardsPub.map(({ node }, i) => (
           <Cards
             key={i}
-            title={node.title}
-            description={node.description}
-            image={node.image.childImageSharp.fluid}
-            slug={`/${kebabCase(node.title)}`}
-            date={node.data}
+            title={node.fronttmatter.title}
+            description={node.fronttmatter.description}
+            slug={node.fields.slug}
+            date={node.fronttmatter.date}
           />
         ))}
       </MDBRow>

@@ -22,7 +22,7 @@ export const Divisao = styled.div`
 export const DivPost = styled.div``
 
 const ListTagsPosts = props => {
-  const postList = props.data.allStrapiProsaudePosts.edges
+  const postList = props.data.allMarkdownRemark.edges
 
   const { tag, currentPage, numPages } = props.pageContext
   const link = `/${kebabCase(tag)}`
@@ -48,11 +48,10 @@ const ListTagsPosts = props => {
             {postList.map(({ node }, i) => (
               <Cards
                 key={i}
-                title={node.title}
-                description={node.description}
-                image={node.image.childImageSharp.fluid}
-                slug={`/${kebabCase(node.title)}`}
-                date={node.data}
+                title={node.frontmatter.title}
+                description={node.frontmatter.description}
+                slug={node.fields.slug}
+                date={node.frontmatter.date}
               />
             ))}
           </MDBRow>
@@ -73,26 +72,25 @@ const ListTagsPosts = props => {
 
 export const query = graphql`
   query Tags($tag: String!, $limit: Int!, $skip: Int!) {
-    allStrapiProsaudePosts(
+    allMarkdownRemark(
       limit: $limit
       skip: $skip
-      sort: { fields: [data], order: DESC }
-      filter: { tags: { in: [$tag] } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: {
+          tags: {in: [$tag]}
+      }}, 
     ) {
       edges {
         node {
-          title
-          image {
-            childImageSharp {
-              fluid(maxWidth: 1080, maxHeight: 1080) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
+          fields {
+            slug
           }
-          description
-          data(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-          tags
-          id
+          frontmatter {
+            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+            description
+            title
+          }
         }
       }
     }

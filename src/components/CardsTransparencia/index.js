@@ -10,28 +10,35 @@ import {
   MDBContainer,
 } from "mdbreact"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import kebabCase from "lodash/kebabCase"
 
 const CardsTransparencia = () => {
   const data = useStaticQuery(graphql`
-    query CardsTransparencia {
-      allStrapiProsaudePosts(
-        limit: 2
-        filter: { tags: { eq: "Institucional" } }
-        sort: { order: DESC, fields: data }
-      ) {
-        edges {
-          node {
-            title
+  query CardsTransparencia {
+    allMarkdownRemark(
+      limit: 4
+      filter: {
+        frontmatter: {
+          tags: {in: ["Transparência"]}
+      }}
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
             description
-            id
+            title
           }
         }
       }
     }
+  }
   `)
 
-  const cadsTransparencia = data.allStrapiProsaudePosts.edges
+  const cadsTransparencia = data.allMarkdownRemark.edges
   return (
     <MDBContainer>
       <MDBRow style={{ marginTop: "4rem" }}>
@@ -45,9 +52,9 @@ const CardsTransparencia = () => {
           <MDBCol sm="6" key={i} style={{ marginBottom: "2rem" }}>
             <MDBCard>
               <MDBCardBody>
-                <MDBCardTitle>{node.title}</MDBCardTitle>
-                <MDBCardText>{node.description}</MDBCardText>
-                <Link to={`/${kebabCase(node.title)}`}>
+                <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>
+                <MDBCardText>{node.frontmatter.description}</MDBCardText>
+                <Link to={node.fields.slug}>
                   <MDBBtn color="amber">Ver Mais</MDBBtn>
                 </Link>
               </MDBCardBody>

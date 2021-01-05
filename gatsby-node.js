@@ -1,5 +1,19 @@
 const path = require("path")
+const { createFilePath } = require(`gatsby-source-filesystem`)
 const _ = require("lodash")
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    createNodeField({
+      node,
+      name: `slug`,
+      value: `/${slug.slice(12)}`
+    })
+  }
+}
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -7,26 +21,43 @@ exports.createPages = async ({ graphql, actions }) => {
   return graphql(
     `
       {
-        postRemark: allStrapiProsaudePosts(
-          sort: { order: DESC, fields: data }
+        allPosts: allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
         ) {
           edges {
             node {
-              id
-              title
+              fields {
+                slug
+              }
+              frontmatter {
+                date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+                description
+                title
+              }
             }
             next {
-              title
-              id
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+              }
             }
             previous {
-              id
-              title
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+              }
             }
           }
         }
-        tagsGroup: allStrapiProsaudePosts {
-          group(field: tags) {
+        tagsGroup: allMarkdownRemark {
+          group(field: frontmatter___tags) {
             fieldValue
             totalCount
           }
@@ -40,17 +71,17 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     `
   ).then(result => {
-    const posts = result.data.postRemark.edges
+    const posts = result.data.allPosts.edges
     const tags = result.data.tagsGroup.group
     const especialidades = result.data.especialidadesGroup.group
 
     //Gera página dos posts
     posts.forEach(({ node, next, previous }) => {
       createPage({
-        path: `/${_.kebabCase(node.title)}`,
+        path: node.fields.slug,
         component: path.resolve("./src/templates/blog-post.js"),
         context: {
-          id: node.id,
+          slug: node.fields.slug,
           previous: previous,
           next: next,
         },

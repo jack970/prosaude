@@ -4,16 +4,17 @@ import { graphql } from "gatsby"
 import { MDBRow, MDBCol } from "mdbreact"
 import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
+import SectionNav from "../components/SectionNav"
 import Cards from "../components/Cards"
 import CardsPub from "../components/CardsPub"
 import CardsTransparencia from "../components/CardsTransparencia"
-import kebabCase from "lodash/kebabCase"
 
 const IndexPage = ({ data }) => {
-  const postList = data.allStrapiProsaudePosts.edges
+  const postList = data.allMarkdownRemark.edges
   return (
     <Layout>
       <SEO title="Início" />
+      <SectionNav />
       <MDBRow style={{ marginTop: "5rem" }}>
         <MDBCol>
           <h1 style={{ fontWeight: "500" }}>Notícias</h1>
@@ -24,11 +25,10 @@ const IndexPage = ({ data }) => {
         {postList.map(({ node }, i) => (
           <Cards
             key={i}
-            title={node.title}
-            description={node.description}
-            image={node.image.childImageSharp.fluid}
-            slug={`/${kebabCase(node.title)}`}
-            date={node.data}
+            title={node.frontmatter.title}
+            description={node.frontmatter.description}
+            slug={node.fields.slug}
+            date={node.frontmatter.date}
           />
         ))}
       </MDBRow>
@@ -42,24 +42,20 @@ export default IndexPage
 
 export const PostListQuery = graphql`
   query PostList {
-    allStrapiProsaudePosts(
-      limit: 3
-      filter: { tags: { eq: "Notícias" } }
-      sort: { order: DESC, fields: data }
+    allMarkdownRemark(
+      limit: 4
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
-          image {
-            childImageSharp {
-              fluid(maxWidth: 300, maxHeight: 250) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
+          fields {
+            slug
           }
-          data(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-          title
-          description
-          id
+          frontmatter {
+            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+            description
+            title
+          }
         }
       }
     }

@@ -26,29 +26,30 @@ export const Col = styled.div`
 const SectionNoticias = () => {
   const data = useStaticQuery(graphql`
     query SectionNotices {
-      allStrapiProsaudePosts(
+      allMarkdownRemark(
         limit: 4
-        filter: { tags: { eq: "Notícias" } }
-        sort: { order: DESC, fields: data }
+        filter: {
+          frontmatter: {
+            tags: {in: ["Notícias"]}
+        }}
+        sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
           node {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 300, maxHeight: 240) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
-              }
+            fields {
+              slug
             }
-            data(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-            title
-            id
+            frontmatter {
+              date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+              description
+              title
+            }
           }
         }
       }
     }
   `)
-  const info = data.allStrapiProsaudePosts.edges
+  const info = data.allMarkdownRemark.edges
   return (
     <MDBRow
       style={{ textAlign: "-webkit-right", marginLeft: "0", marginRight: "0" }}
@@ -62,18 +63,18 @@ const SectionNoticias = () => {
         </div>
         {info.map(({ node }, i) => (
           <MDBCard style={{ marginBottom: "2rem" }} key={i}>
-            <Link to={`/${kebabCase(node.title)}`}>
-              <Img
+            <Link to={`/${kebabCase(node.frontmatter.title)}`}>
+              {/* <Img
                 className="img-fluid"
-                fluid={node.image.childImageSharp.fluid}
+                fluid={node.frontmatter.image.childImageSharp.fluid}
                 waves
-              />
+              /> */}
             </Link>
             <MDBCardBody>
-              <MDBCardText>{node.date}</MDBCardText>
-              <MDBCardTitle>{node.title}</MDBCardTitle>
-              <MDBCardText>{node.description}</MDBCardText>
-              <Link to={`/${kebabCase(node.title)}`}>
+              <MDBCardText>{node.frontmatter.date}</MDBCardText>
+              <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>
+              <MDBCardText>{node.frontmatter.description}</MDBCardText>
+              <Link to={node.fields.slug}>
                 <MDBBtn color="orange">Ler mais</MDBBtn>
               </Link>
             </MDBCardBody>

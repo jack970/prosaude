@@ -27,15 +27,15 @@ const Cards = ({ title, description, image, slug, date }) => {
     <Col>
       <MDBCard>
         <Link to={slug}>
-          <Img
+          {/* <Img
             top
             fluid={image}
             overlay="white-slight"
             hover
             waves
             alt="MDBCard image cap"
-          />
-        </Link>
+          /> */}
+        
         <MDBCardBody>
           <MDBCardTitle>{title}</MDBCardTitle>
           <hr />
@@ -55,6 +55,7 @@ const Cards = ({ title, description, image, slug, date }) => {
             </li>
           </ul>
         </div>
+        </Link>
       </MDBCard>
     </Col>
   )
