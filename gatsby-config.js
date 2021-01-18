@@ -104,21 +104,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-source-strapi",
-      options: {
-        apiURL:
-            process.env.GATSBY_NODE === "production" 
-            ? "http://localhost:1337"
-            : "http://localhost:1337",
-        contentTypes: [
-          // List of the Content Types you want to be able to request from Gatsby.
-          "prosaude-posts",
-          "prosaude-guias",
-        ],
-        queryLimit: 1000,
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `PROSAUDE - Programa de Assistência aos Servidores de Catalão.`,
