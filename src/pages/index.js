@@ -6,8 +6,8 @@ import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
 import SectionNav from "../components/SectionNav"
 import Cards from "../components/Cards"
-import CardsPub from "../components/CardsPub"
-import CardsTransparencia from "../components/CardsTransparencia"
+import CardsPub from "../components/Cards/CardsPub"
+import CardsTransparencia from "../components/Cards/CardsTransparencia"
 
 const IndexPage = ({ data }) => {
   const postList = data.allMarkdownRemark.edges
@@ -25,8 +25,9 @@ const IndexPage = ({ data }) => {
         {postList.map(({ node }, i) => (
           <Cards
             key={i}
+            image={node.frontmatter.image}
             title={node.frontmatter.title}
-            description={node.frontmatter.description}
+            description={node.excerpt}
             slug={node.fields.slug}
             date={node.frontmatter.date}
           />
@@ -52,10 +53,17 @@ export const PostListQuery = graphql`
             slug
           }
           frontmatter {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
             date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-            description
             title
           }
+          excerpt(pruneLength: 50)
         }
       }
     }

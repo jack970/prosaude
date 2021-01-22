@@ -8,29 +8,23 @@ import {
   MDBCarouselCaption,
 } from "mdbreact"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Img from "gatsby-image"
 import kebabCase from "lodash/kebabCase"
 
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
-    query allPosts {
-      allStrapiProsaudePosts(limit: 3, sort: { fields: data, order: DESC }) {
-        edges {
-          node {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1000, maxHeight: 1000) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            data(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+  query allPosts {
+    allMarkdownRemark(limit: 3, sort: {fields: frontmatter___date, order: DESC}) {
+      edges {
+        node {
+          frontmatter {
+            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
             title
-            id
           }
         }
       }
     }
+  }
+  
   `)
 
   return (
@@ -48,23 +42,18 @@ const SectionPage = () => {
       }}
     >
       <MDBCarouselInner>
-        {data.allStrapiProsaudePosts.edges.map(({ node }, i) => (
-          <Link to={`/${kebabCase(node.title)}`} key={i}>
+        {data.allMarkdownRemark.edges.map(({ node }, i) => (
+          <Link to={`/${kebabCase(node.frontmatter.title)}`} key={i}>
             <MDBCarouselItem itemId={i + 1}>
               <MDBView style={{ cursor: "pointer" }}>
-                <Img
-                  fluid={node.image.childImageSharp.fluid}
-                  alt={node.title}
-                  style={{ height: "15rem" }}
-                />
                 <MDBMask overlay="orange-slight" className="flex-center" />
               </MDBView>
               <MDBCarouselCaption>
-                <h3 className="h4">{node.title}</h3>
+                <h3 className="h4">{node.frontmatter.title}</h3>
                 <h4 className="h4-responsive" style={{ fontWeight: "600" }}>
-                  {node.description}
+                  {node.frontmatter.description}
                 </h4>
-                <p>{node.data}</p>
+                <p>{node.frontmatter.data}</p>
               </MDBCarouselCaption>
             </MDBCarouselItem>
           </Link>

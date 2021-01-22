@@ -1,9 +1,19 @@
 ---
-layout: noticias
 title: 'Making of - Parte 1'
-date: 2021-01-06 05:54:23
-tags: ['Notícias']
 description: 'Quais ferramentas foram utilizadas para montar esse blog e o porquê de ter escolhido cada uma delas.'
+date: 2021-01-06 05:54:23
+image: ../static/assets/img/plantas.jpg
+tags: ['Notícias']
+pdf:
+    -
+        alt: Priemeiro PDF
+        url: assets/img/2-cartilhadomeiatualizadaem01-10-2020.pdf
+    -   
+        alt: Segundo PDF
+        url: assets/img/2-cartilhadomeiatualizadaem01-10-2020.pdf
+    -
+        alt: terceiro PDF
+        url: assets/img/2-cartilhadomeiatualizadaem01-10-2020.pdf
 ---
 
 Existe uma continuação desse post em [Making of - parte 2](https://willianjusten.com.br/making-of-parte-2/).

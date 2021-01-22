@@ -72,13 +72,6 @@ module.exports = {
         path: `${__dirname}/static/assets/img`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {
@@ -87,14 +80,12 @@ module.exports = {
         plugins: [
           {
             resolve: `gatsby-remark-relative-images`,
-            options: {
-              name: `uploads`,
-            },
           },
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 960,
+              linkImagesToOriginal: false,
             },
           },
           `gatsby-remark-lazy-load`,
@@ -112,7 +103,7 @@ module.exports = {
         background_color: `#f4f9fc`,
         theme_color: `#f4f9fc`,
         display: `minimal-ui`,
-        icon: `src/images/logo-prosaude.png`, // This path is relative to the root of the site.
+        icon: `static/assets/logo-img/logo-prosaude.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

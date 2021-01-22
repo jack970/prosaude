@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 import { MDBRow } from "mdbreact"
 import Cards from "../components/Cards"
 import styled from "styled-components"
-import SectionNoticias from "../components/AllNoticiasSection"
+import SectionNoticias from "../components/Cards/AllNoticiasSection"
 import media from "styled-media-query"
 import PaginationTags from "../components/Pagination"
 import kebabCase from "lodash/kebabCase"
@@ -48,8 +48,9 @@ const ListTagsPosts = props => {
             {postList.map(({ node }, i) => (
               <Cards
                 key={i}
+                image={node.frontmatter.image}
                 title={node.frontmatter.title}
-                description={node.frontmatter.description}
+                description={node.excerpt}
                 slug={node.fields.slug}
                 date={node.frontmatter.date}
               />
@@ -87,10 +88,18 @@ export const query = graphql`
             slug
           }
           frontmatter {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
             date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
             description
             title
           }
+          excerpt(pruneLength: 50)
         }
       }
     }

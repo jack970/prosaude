@@ -10,7 +10,6 @@ import {
 import { useStaticQuery, graphql, Link } from "gatsby"
 import media from "styled-media-query"
 import styled from "styled-components"
-import Img from "gatsby-image"
 import kebabCase from "lodash/kebabCase"
 
 export const Col = styled.div`

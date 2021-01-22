@@ -62,18 +62,11 @@ exports.createPages = async ({ graphql, actions }) => {
             totalCount
           }
         }
-        especialidadesGroup: allStrapiProsaudeGuias {
-          group(field: Especialidade) {
-            fieldValue
-            totalCount
-          }
-        }
       }
     `
   ).then(result => {
     const posts = result.data.allPosts.edges
     const tags = result.data.tagsGroup.group
-    const especialidades = result.data.especialidadesGroup.group
 
     //Gera página dos posts
     posts.forEach(({ node, next, previous }) => {
@@ -109,28 +102,6 @@ exports.createPages = async ({ graphql, actions }) => {
             currentPage: i + 1,
           },
         })
-      })
-    })
-
-    especialidades.forEach(especialidade => {
-      createPage({
-        path: `/guia-medico/especialidades`,
-        component: path.resolve("./src/templates/all-speciality.js"),
-        context: {
-          especialidades: especialidade,
-        },
-      })
-    })
-
-    especialidades.forEach(especialidade => {
-      createPage({
-        path: `/guia-medico/especialidades/${_.kebabCase(
-          especialidade.fieldValue
-        )}/`,
-        component: path.resolve("./src/templates/specialityPost.js"),
-        context: {
-          speciality: especialidade.fieldValue,
-        },
       })
     })
   })

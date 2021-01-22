@@ -2,6 +2,12 @@ backend:
   name: github
   repo: jack970/prosaude
   branch: master
+  commit_messages:
+    create: 'Post Criado {{collection}} “{{slug}}”'
+    update: 'Post Atualizado {{collection}} “{{slug}}”'
+    delete: 'Post Deletado {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
 
 publish_mode: editorial_workflow
 
@@ -14,15 +20,16 @@ collections:
     folder: posts # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template i.e. title.md
-    fields: # The fields for each document, usually in front matter
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'posts' }
-      - {
-          label: 'Data',
-          name: 'date',
-          widget: 'datetime',
-          format: 'YYYY-MM-DD hh:mm:ss',
-        }
-      - { label: 'Imagem da Notícia', name: 'image', widget: 'image' }
-      - { label: 'Título', name: 'title', widget: 'string' }
-      - { label: 'Descrição', name: 'description', widget: 'string' }
-      - { label: 'Conteúdo da Notícia', name: 'body', widget: 'markdown' }
+    fields:
+    - {label: "Título", name: "title", widget: "string"}
+    - {label: "Descrição", name: "description", widget: "string"}
+    - {label: "Tags", name: "tags", widget: "list", default: ["Notícias"], max: 3, min: 1}
+    - {label: "Data", name: "date", widget: "datetime", format: 'YYYY-MM-DD hh:mm:ss'}
+    - name: pdf
+      label: "PDF"
+      widget: list
+      fields:
+        - { label: "Titulo PDF", name: "alt", widget: "string" }
+        - { label: "Arquivo PDF", name: "url", widget: "file" }
+    - {label: "Imagem da Notícia", name: "thumbnail", widget: "image"}
+    - {label: "Corpo", name: "body", widget: "markdown"}

@@ -2,10 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import InnerHeader from "../InnerHeader"
-import HeaderNav from "../HeaderNav"
+import InnerHeader from "../Header/InnerHeader"
+import HeaderNav from "../Header/HeaderNav"
 import GlobalStyles from "../../Styles/global"
-import NavBar from "../NavBar"
 import Footer from "../Footer"
 
 const Layout = ({ children }) => {
@@ -29,7 +28,6 @@ const Layout = ({ children }) => {
         title={data.site.siteMetadata.title}
         description={data.site.siteMetadata.description}
       />
-      <NavBar />
       <div
         style={{
           margin: `0 auto`,
