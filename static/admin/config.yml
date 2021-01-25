@@ -38,5 +38,5 @@ collections:
       fields:
         - { label: "Titulo PDF", name: "alt", widget: "string" }
         - { label: "Arquivo PDF", name: "url", widget: "file" }
-    - {label: "Imagem da Notícia", name: "thumbnail", widget: "image"}
+    - {label: "Imagem da Notícia", name: "image", widget: "image"}
     - {label: "Corpo", name: "body", widget: "markdown"}
