@@ -1,10 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import { MDBRow, MDBCol } from "mdbreact"
+import { MDBRow } from "mdbreact"
 import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
-import SectionNav from "../components/SectionNav"
 import Cards from "../components/Cards"
 import CardsPub from "../components/Cards/CardsPub"
 import CardsTransparencia from "../components/Cards/CardsTransparencia"
@@ -14,12 +13,9 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Início" />
-      <SectionNav />
       <MDBRow style={{ marginTop: "5rem" }}>
-        <MDBCol>
-          <h1 style={{ fontWeight: "500" }}>Notícias</h1>
-          <hr style={{ borderTop: "2px solid #FD0" }} />
-        </MDBCol>
+        <h1 style={{ fontWeight: "500" }}>Notícias</h1>
+        <hr style={{ borderTop: "2px solid #FD0" }} />
       </MDBRow>
       <MDBRow>
         {postList.map(({ node }, i) => (

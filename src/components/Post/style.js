@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import styled from "styled-components"
 import media from "styled-media-query"
 
@@ -11,6 +12,22 @@ export const PostHeader = styled.header`
     padding: 0;
     max-width: 100%;
 `}
+`
+
+export const PostBadge = styled.div`
+  font-size: 15px;
+  font-weight: 700;
+  padding: 1.5rem 0 1rem 1.4rem;
+`
+
+
+export const PostBadgetLink = styled(Link)`
+  padding: .3rem;
+  margin-right: 1rem;
+  border-radius: .125rem;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  color: #fff!important;
+  background-color: #fb3!important;
 `
 
 export const PostTitle = styled.h1`

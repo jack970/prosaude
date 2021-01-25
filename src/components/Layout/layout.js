@@ -2,10 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import InnerHeader from "../Header/InnerHeader"
 import HeaderNav from "../Header/HeaderNav"
 import GlobalStyles from "../../Styles/global"
 import Footer from "../Footer"
+import Header from "../Header"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -15,6 +15,13 @@ const Layout = ({ children }) => {
           title
           description
           address
+          menuHeader {
+            label
+            submenu {
+                label
+                url
+            }
+          }
         }
       }
     }
@@ -24,9 +31,10 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyles />
       <HeaderNav title={data.site.siteMetadata.title} />
-      <InnerHeader
+      <Header
         title={data.site.siteMetadata.title}
         description={data.site.siteMetadata.description}
+        menu={data.site.siteMetadata.menuHeader}
       />
       <div
         style={{

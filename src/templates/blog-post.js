@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
 import RecomendPosts from "../components/RecomendPosts"
@@ -8,7 +8,7 @@ import styled from "styled-components"
 import SectionNoticias from "../components/Cards/AllNoticiasSection"
 import kebabCase from "lodash/kebabCase"
 import media from "styled-media-query"
-import { MDBBadge } from "mdbreact"
+import ListPdf from "../components/ListPdf"
 
 export const Divisao = styled.div`
   display: flex;
@@ -35,12 +35,12 @@ const BlogPost = ({ data, pageContext }) => {
       <Divisao>
         <DivPost>
           <S.PostHeader>
-            <S.PostCategory>
+            <S.PostBadge>
               <strong>Categorias:</strong>&nbsp;{` `}
-              <Link to={`/${kebabCase(post.frontmatter.tags)}`}>
-                <MDBBadge color="warning">{post.frontmatter.tags}</MDBBadge>&nbsp;
-              </Link>
-            </S.PostCategory>
+              <S.PostBadgetLink to={`/${kebabCase(post.frontmatter.tags)}`}>
+                {post.frontmatter.tags}
+              </S.PostBadgetLink>
+            </S.PostBadge>&nbsp;
             <S.PostDate>Publicado em {post.frontmatter.date}</S.PostDate>
             <S.PostTitle>{post.frontmatter.title}</S.PostTitle>
             <S.PostDescription>{post.frontmatter.description}</S.PostDescription>
@@ -48,6 +48,7 @@ const BlogPost = ({ data, pageContext }) => {
           <S.MainContent>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
           </S.MainContent>
+          <ListPdf PDFGenerator={post.frontmatter.pdf} />
           <RecomendPosts next={next} previous={previous} />
         </DivPost>
         <SectionNoticias />
@@ -68,6 +69,10 @@ export const query = graphql`
         description
         title
         tags
+        pdf {
+          alt
+          url
+        }
       }
     }
   }
