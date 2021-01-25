@@ -13,29 +13,26 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 const CardsTransparencia = () => {
   const data = useStaticQuery(graphql`
-  query CardsTransparencia {
-    allMarkdownRemark(
-      limit: 4
-      filter: {
-        frontmatter: {
-          tags: {in: ["Transparência"]}
-      }}
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-            description
-            title
+    query CardsTransparencia {
+      allMarkdownRemark(
+        limit: 4
+        filter: { frontmatter: { tags: { in: ["Transparência"] } } }
+        sort: { fields: [frontmatter___date], order: DESC }
+      ) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            frontmatter {
+              date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+              description
+              title
+            }
           }
         }
       }
     }
-  }
   `)
 
   const cadsTransparencia = data.allMarkdownRemark.edges

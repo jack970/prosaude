@@ -40,10 +40,13 @@ const BlogPost = ({ data, pageContext }) => {
               <S.PostBadgetLink to={`/${kebabCase(post.frontmatter.tags)}`}>
                 {post.frontmatter.tags}
               </S.PostBadgetLink>
-            </S.PostBadge>&nbsp;
+            </S.PostBadge>
+            &nbsp;
             <S.PostDate>Publicado em {post.frontmatter.date}</S.PostDate>
             <S.PostTitle>{post.frontmatter.title}</S.PostTitle>
-            <S.PostDescription>{post.frontmatter.description}</S.PostDescription>
+            <S.PostDescription>
+              {post.frontmatter.description}
+            </S.PostDescription>
           </S.PostHeader>
           <S.MainContent>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />

@@ -18,8 +18,8 @@ const Layout = ({ children }) => {
           menuHeader {
             label
             submenu {
-                label
-                url
+              label
+              url
             }
           }
         }

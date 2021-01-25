@@ -8,9 +8,8 @@ date: 2021-01-25 05:19:03
 pdf:
   - alt: Título do pdf
     url: assets/img/2-CartilhadoMEIatualizadaem01-10-2020.pdf
-thumbnail: assets/img/plantas.jpg
+image: /assets/img/plantas.jpg
 ---
-
 
 Existe uma continuação desse post em [Making of - parte 2](https://willianjusten.com.br/making-of-parte-2/).
 
@@ -27,11 +26,11 @@ Eu pretendo escrever o máximo que der e sobre tudo, desde o avançado até dica
 
 Eu sou um cara muito curioso e gosto sempre de coisas novas, então eu utilizei:
 
-* [Jekyll](http://jekyllrb.com/) - como a base de todo o blog, sendo meu gerador de páginas estáticas.
-* [GulpJS](http://gulpjs.com/) - meu automatizador favorito, que utilizo para basicamente todas as tarefas tediosas do frontend.
-* [SVG](http://pt.wikipedia.org/wiki/SVG) - ícones escaláveis, fáceis de utilizar e muito leves.
-* [Stylus](http://learnboost.github.io/stylus/) - tem pre-processador css mais bonito que stylus? Totalmente flexível, completo e o mais importante, totalmente em Javascript =)
-* [Jeet](http://jeet.gs) - sistema de grid feito em stylus.
-* [Kouto Swiss](http://kouto-swiss.io/) - um framework para stylus.
-* [Rupture](http://jescalan.github.io/rupture/) - uma ferramenta para facilitar o trabalho com media queries no stylus.
-* [Github Pages](https://pages.github.com/) - onde está hospedado esse lindo blog (se você não achou bonito, se retire! Brincadeira, pode continuar, só me manda um feedback do que não gostou).
+- [Jekyll](http://jekyllrb.com/) - como a base de todo o blog, sendo meu gerador de páginas estáticas.
+- [GulpJS](http://gulpjs.com/) - meu automatizador favorito, que utilizo para basicamente todas as tarefas tediosas do frontend.
+- [SVG](http://pt.wikipedia.org/wiki/SVG) - ícones escaláveis, fáceis de utilizar e muito leves.
+- [Stylus](http://learnboost.github.io/stylus/) - tem pre-processador css mais bonito que stylus? Totalmente flexível, completo e o mais importante, totalmente em Javascript =)
+- [Jeet](http://jeet.gs) - sistema de grid feito em stylus.
+- [Kouto Swiss](http://kouto-swiss.io/) - um framework para stylus.
+- [Rupture](http://jescalan.github.io/rupture/) - uma ferramenta para facilitar o trabalho com media queries no stylus.
+- [Github Pages](https://pages.github.com/) - onde está hospedado esse lindo blog (se você não achou bonito, se retire! Brincadeira, pode continuar, só me manda um feedback do que não gostou).

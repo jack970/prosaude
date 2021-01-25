@@ -12,19 +12,21 @@ import kebabCase from "lodash/kebabCase"
 
 const SectionPage = () => {
   const data = useStaticQuery(graphql`
-  query allPosts {
-    allMarkdownRemark(limit: 3, sort: {fields: frontmatter___date, order: DESC}) {
-      edges {
-        node {
-          frontmatter {
-            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-            title
+    query allPosts {
+      allMarkdownRemark(
+        limit: 3
+        sort: { fields: frontmatter___date, order: DESC }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+              title
+            }
           }
         }
       }
     }
-  }
-  
   `)
 
   return (

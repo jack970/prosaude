@@ -27,10 +27,7 @@ const SectionNoticias = () => {
     query SectionNotices {
       allMarkdownRemark(
         limit: 4
-        filter: {
-          frontmatter: {
-            tags: {in: ["Notícias"]}
-        }}
+        filter: { frontmatter: { tags: { in: ["Notícias"] } } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
