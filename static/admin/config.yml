@@ -18,7 +18,7 @@ site_url: https://prosaude.netlify.app
 publish_mode: editorial_workflow
 
 media_folder: static/assets/img
-public_folder: /assets/img
+public_folder: ../static/assets/img
 locale: 'pt'
 
 collections:
@@ -30,6 +30,7 @@ collections:
     fields:
     - {label: "Título", name: "title", widget: "string"}
     - {label: "Descrição", name: "description", widget: "string"}
+    - {label: "Imagem da Notícia", name: "image", widget: "image"}
     - {label: "Tags", name: "tags", widget: "list", default: ["Notícias"], max: 3, min: 1}
     - {label: "Data", name: "date", widget: "datetime", format: 'YYYY-MM-DD hh:mm:ss'}
     - name: pdf
@@ -38,5 +39,4 @@ collections:
       fields:
         - { label: "Titulo PDF", name: "alt", widget: "string" }
         - { label: "Arquivo PDF", name: "url", widget: "file" }
-    - {label: "Imagem da Notícia", name: "image", widget: "image"}
     - {label: "Corpo", name: "body", widget: "markdown"}

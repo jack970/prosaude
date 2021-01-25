@@ -72,6 +72,7 @@ export const PostCategory = styled.p`
 `
 
 export const MainContent = styled.section`
+  word-break: break-all;
   margin: auto;
   max-width: 70rem;
   padding: 2rem 5rem;

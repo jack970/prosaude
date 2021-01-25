@@ -24,6 +24,7 @@ export const CardLink = styled(Link)``
 export const CardBody = styled.div`
   min-height: 1px;
   padding: 1.25rem;
+  word-break: break-all;
 `
 
 export const CardDivider = styled.hr``

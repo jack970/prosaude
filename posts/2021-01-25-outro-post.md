@@ -1,6 +1,7 @@
 ---
 title: Outro Post
 description: Descricção do Post
+image: ../static/assets/img/plantas.jpg
 tags:
   - Notícias
   - Posts
@@ -8,7 +9,6 @@ date: 2021-01-25 05:19:03
 pdf:
   - alt: Título do pdf
     url: assets/img/2-CartilhadoMEIatualizadaem01-10-2020.pdf
-image: /assets/img/plantas.jpg
 ---
 
 Existe uma continuação desse post em [Making of - parte 2](https://willianjusten.com.br/making-of-parte-2/).
