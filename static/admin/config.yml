@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: git-gateway
   repo: jack970/prosaude
   branch: master
   commit_messages:
@@ -9,10 +9,17 @@ backend:
     uploadMedia: '[skip ci] Upload “{{path}}”'
     deleteMedia: '[skip ci] Delete “{{path}}”'
 
+local_backend: true
+
+display_url: https://prosaude.netlify.app
+logo_url: https://prosaude.netlify.app/icons/icon-192x192.png
+site_url: https://prosaude.netlify.app
+
 publish_mode: editorial_workflow
 
 media_folder: static/assets/img
 public_folder: assets/img
+locale: 'pt'
 
 collections:
   - name: posts # Used in routes, e.g. /admin/collections/blog
