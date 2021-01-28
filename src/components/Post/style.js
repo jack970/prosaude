@@ -5,8 +5,6 @@ import media from "styled-media-query"
 export const PostHeader = styled.header`
   color: #313d3e;
   margin: auto;
-  max-width: 70rem;
-  padding: 0rem 5rem 0;
 
   ${media.lessThan("large")`
     padding: 0;
@@ -17,7 +15,7 @@ export const PostHeader = styled.header`
 export const PostBadge = styled.div`
   font-size: 15px;
   font-weight: 700;
-  padding: 1.5rem 0 1rem 1.4rem;
+  padding: 0 0 1rem 1.4rem;
 `
 
 export const PostBadgetLink = styled(Link)`
@@ -71,11 +69,22 @@ export const PostCategory = styled.p`
 `}
 `
 
+export const ButtonPDF = styled.button`
+    padding: 0.3rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
+    margin-right: 1rem;
+    border-radius: 0.125rem;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    color: #fff !important;
+    background-color: #fb3 !important;
+`
+
 export const MainContent = styled.section`
   word-break: break-all;
   margin: auto;
-  max-width: 70rem;
-  padding: 2rem 5rem;
+  
   ${media.lessThan("large")`
   padding: 2rem 0;
   max-width: 100%;

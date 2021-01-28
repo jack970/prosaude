@@ -1,26 +1,7 @@
 import React from "react"
-import {
-  MDBCard,
-  MDBRow,
-  MDBBtn,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-} from "mdbreact"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import media from "styled-media-query"
-import styled from "styled-components"
-import kebabCase from "lodash/kebabCase"
-
-export const Col = styled.div`
-  width: 13rem;
-  margin-left: 4rem;
-
-  ${media.lessThan("765px")`
-        width: 100%;
-        margin-left: 0;
-    `}
-`
+import { useStaticQuery, graphql } from "gatsby"
+import * as S from './styled'
+import { SectionDivider } from "../CardsSection/styled"
 
 const SectionNoticias = () => {
   const data = useStaticQuery(graphql`
@@ -40,6 +21,7 @@ const SectionNoticias = () => {
               description
               title
             }
+            excerpt(pruneLength: 50)
           }
         }
       }
@@ -47,37 +29,20 @@ const SectionNoticias = () => {
   `)
   const info = data.allMarkdownRemark.edges
   return (
-    <MDBRow
-      style={{ textAlign: "-webkit-right", marginLeft: "0", marginRight: "0" }}
-    >
-      <Col>
-        <div>
-          <h2 className="h3-responsive">
-            ÚLTIMAS <strong>NOTÍCIAS</strong>
-            <hr style={{ borderBottom: "1px solid #FDB700" }} />
-          </h2>
-        </div>
-        {info.map(({ node }, i) => (
-          <MDBCard style={{ marginBottom: "2rem" }} key={i}>
-            <Link to={`/${kebabCase(node.frontmatter.title)}`}>
-              {/* <Img
-                className="img-fluid"
-                fluid={node.frontmatter.image.childImageSharp.fluid}
-                waves
-              /> */}
-            </Link>
-            <MDBCardBody>
-              <MDBCardText>{node.frontmatter.date}</MDBCardText>
-              <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>
-              <MDBCardText>{node.frontmatter.description}</MDBCardText>
-              <Link to={node.fields.slug}>
-                <MDBBtn color="orange">Ler mais</MDBBtn>
-              </Link>
-            </MDBCardBody>
-          </MDBCard>
-        ))}
-      </Col>
-    </MDBRow>
+    <S.SectionWrapper>
+      <S.CardsSectionTitle>ÚLTIMAS <strong>NOTÍCIAS</strong></S.CardsSectionTitle>
+      <SectionDivider />
+      {info.map(({ node }, i) => (
+      <S.CardsSectionLink key={i} to={node.fields.slug}>
+        <S.CardsSectionBody>
+          <S.CardsSectionBodyDate>{node.frontmatter.date}</S.CardsSectionBodyDate>
+          <S.CardsSectionBodyTitle>{node.frontmatter.title}</S.CardsSectionBodyTitle>
+          <S.CardsSectionBodyDescription>{node.frontmatter.description}</S.CardsSectionBodyDescription>
+          <S.CardsSectionBodyButton>LER MAIS</S.CardsSectionBodyButton>
+        </S.CardsSectionBody>          
+      </S.CardsSectionLink>
+      ))}
+    </S.SectionWrapper>
   )
 }
 

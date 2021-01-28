@@ -2,13 +2,13 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
-import { MDBRow } from "mdbreact"
 import Cards from "../components/Cards"
 import styled from "styled-components"
 import SectionNoticias from "../components/Cards/AllNoticiasSection"
 import media from "styled-media-query"
 import PaginationTags from "../components/Pagination"
 import kebabCase from "lodash/kebabCase"
+import CardsSection from "../components/Cards/CardsSection"
 
 export const Divisao = styled.div`
   display: flex;
@@ -37,14 +37,7 @@ const ListTagsPosts = props => {
       <SEO title={tag} description="Posts" />
       <Divisao>
         <DivPost>
-          <div
-            className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-            style={{ paddingLeft: "0" }}
-          >
-            <h2 style={{ fontWeight: "500" }}>{tag}</h2>
-            <hr style={{ borderTop: "2px solid #FD0" }} />
-          </div>
-          <MDBRow>
+          <CardsSection titleSection={tag} flexWrap="wrap">
             {postList.map(({ node }, i) => (
               <Cards
                 key={i}
@@ -55,7 +48,7 @@ const ListTagsPosts = props => {
                 date={node.frontmatter.date}
               />
             ))}
-          </MDBRow>
+          </CardsSection>
           <PaginationTags
             currentPage={currentPage}
             numPages={numPages}
@@ -85,13 +78,7 @@ export const query = graphql`
             slug
           }
           frontmatter {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
-              }
-            }
+            image
             date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
             description
             title

@@ -1,7 +1,7 @@
 import React from "react"
 import Cards from "../index"
 import { graphql, useStaticQuery } from "gatsby"
-import { MDBRow, MDBCol } from "mdbreact"
+import CardsSection from "../CardsSection"
 
 const CardsPub = () => {
   const data = useStaticQuery(graphql`
@@ -21,6 +21,7 @@ const CardsPub = () => {
               description
               title
             }
+            excerpt(pruneLength: 50)
           }
         }
       }
@@ -29,14 +30,7 @@ const CardsPub = () => {
 
   const cardsPub = data.allMarkdownRemark.edges
   return (
-    <>
-      <MDBRow style={{ marginTop: "5rem" }}>
-        <MDBCol>
-          <h1 style={{ fontWeight: "500" }}>Publicações</h1>
-          <hr style={{ borderTop: "2px solid #FD0" }} />
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
+    <CardsSection titleSection="Publicações">
         {cardsPub.map(({ node }, i) => (
           <Cards
             key={i}
@@ -46,8 +40,7 @@ const CardsPub = () => {
             date={node.fronttmatter.date}
           />
         ))}
-      </MDBRow>
-    </>
+    </CardsSection>
   )
 }
 

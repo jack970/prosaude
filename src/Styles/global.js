@@ -26,11 +26,17 @@ const GlobalStyles = createGlobalStyle`
     footer, header, hgroup, menu, nav, section {
         display: block;
     }
+    button, input {
+        outline: 0;
+    }
     body {
         line-height: 1;
         line-height: 1.5;
         font-size: 100%;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    a {
+        text-decoration: none;
     }
     ol,ul {
         list-style: none;
@@ -38,7 +44,7 @@ const GlobalStyles = createGlobalStyle`
         list-style-type: none;
     }
     header {
-        padding: 40px 15px;
+        padding: 20px 15px;
     }
     blockquote, q {
         quotes: none;

@@ -18,7 +18,7 @@ site_url: https://prosaude.netlify.app
 publish_mode: editorial_workflow
 
 media_folder: static/assets/img
-public_folder: ../static/assets/img
+public_folder: /assets/img
 locale: 'pt'
 
 collections:

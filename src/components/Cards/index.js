@@ -6,7 +6,7 @@ const Cards = ({ title, description, image, slug, date }) => {
     <S.Col>
       <S.CardLink to={slug}>
         <S.CardWrapper>
-          <S.CardImage top fluid={image.childImageSharp.fluid} hover waves />
+          <S.CardImage src={image} />
           <S.CardBody>
             <S.CardTitle>{title}</S.CardTitle>
             <S.CardDivider />

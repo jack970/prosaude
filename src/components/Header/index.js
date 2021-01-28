@@ -1,4 +1,5 @@
 import React from "react"
+import InputSearch from "../Search"
 import HeaderMenu from "./HeaderMenu"
 import * as S from "./styled"
 
@@ -12,6 +13,7 @@ const Header = ({ title, description, menu }) => {
         </S.HeaderLogo>
         <S.HeaderMenuContents>
           <HeaderMenu menu={menu} />
+          <InputSearch />
         </S.HeaderMenuContents>
       </S.HeaderContainer>
     </S.HeaderWrapper>

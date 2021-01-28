@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { Link } from "gatsby"
-import Img from "gatsby-image"
 import media from "styled-media-query"
 
 export const Col = styled.div`
@@ -29,7 +28,9 @@ export const CardBody = styled.div`
 
 export const CardDivider = styled.hr``
 
-export const CardImage = styled(Img)``
+export const CardImage = styled.img`
+  width: 100%;
+`
 
 export const CardTitle = styled.h1`
   font-weight: 400;

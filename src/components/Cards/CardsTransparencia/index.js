@@ -1,15 +1,8 @@
 import React from "react"
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBBtn,
-  MDBCol,
-  MDBRow,
-  MDBContainer,
-} from "mdbreact"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import CardsSection from "../CardsSection"
+import { useStaticQuery, graphql } from "gatsby"
+import { CardsSectionBodyButton } from "../AllNoticiasSection/styled"
+import * as S from './styled'
 
 const CardsTransparencia = () => {
   const data = useStaticQuery(graphql`
@@ -29,6 +22,7 @@ const CardsTransparencia = () => {
               description
               title
             }
+            excerpt(pruneLength: 50)
           }
         }
       }
@@ -37,29 +31,19 @@ const CardsTransparencia = () => {
 
   const cadsTransparencia = data.allMarkdownRemark.edges
   return (
-    <MDBContainer>
-      <MDBRow style={{ marginTop: "4rem" }}>
-        <MDBCol>
-          <h1 style={{ fontWeight: "500" }}>Institucional</h1>
-          <hr style={{ borderTop: "2px solid #FD0" }} />
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        {cadsTransparencia.map(({ node }, i) => (
-          <MDBCol sm="6" key={i} style={{ marginBottom: "2rem" }}>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBCardTitle>{node.frontmatter.title}</MDBCardTitle>
-                <MDBCardText>{node.frontmatter.description}</MDBCardText>
-                <Link to={node.fields.slug}>
-                  <MDBBtn color="amber">Ver Mais</MDBBtn>
-                </Link>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
+    <CardsSection titleSection="Transparência">
+      <S.CardTransparenciaRow>
+        {cadsTransparencia.map(({node}, i) => (
+          <S.CardTransparenciaLink key={i} to={node.fields.slug}>
+            <S.CardTransparenciaBody>
+              <S.CardTransparenciaTitle>{node.frontmatter.title}</S.CardTransparenciaTitle>
+              <S.CardTransparenciaDescription>{node.frontmatter.description}</S.CardTransparenciaDescription>
+              <CardsSectionBodyButton>VER MAIS</CardsSectionBodyButton>
+            </S.CardTransparenciaBody>
+          </S.CardTransparenciaLink>
         ))}
-      </MDBRow>
-    </MDBContainer>
+      </S.CardTransparenciaRow>
+    </CardsSection>
   )
 }
 

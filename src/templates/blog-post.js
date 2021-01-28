@@ -8,7 +8,7 @@ import styled from "styled-components"
 import SectionNoticias from "../components/Cards/AllNoticiasSection"
 import kebabCase from "lodash/kebabCase"
 import media from "styled-media-query"
-import ListPdf from "../components/ListPdf"
+import ButtonModalPdf from "../components/ButtonModal"
 
 export const Divisao = styled.div`
   display: flex;
@@ -23,9 +23,9 @@ export const DivPost = styled.div``
 
 const BlogPost = ({ data, pageContext }) => {
   const post = data.markdownRemark
+  const tag = post.frontmatter.tags
   const next = pageContext.next
   const previous = pageContext.previous
-
   return (
     <Layout>
       <SEO
@@ -37,9 +37,11 @@ const BlogPost = ({ data, pageContext }) => {
           <S.PostHeader>
             <S.PostBadge>
               <strong>Categorias:</strong>&nbsp;{` `}
-              <S.PostBadgetLink to={`/${kebabCase(post.frontmatter.tags)}`}>
-                {post.frontmatter.tags}
-              </S.PostBadgetLink>
+              {tag.map((label, i) => 
+                <S.PostBadgetLink key={i} to={`/${kebabCase(label)}`}>
+                    {label}
+                </S.PostBadgetLink>
+              )}
             </S.PostBadge>
             &nbsp;
             <S.PostDate>Publicado em {post.frontmatter.date}</S.PostDate>
@@ -51,7 +53,11 @@ const BlogPost = ({ data, pageContext }) => {
           <S.MainContent>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
           </S.MainContent>
-          <ListPdf PDFGenerator={post.frontmatter.pdf} />
+          <S.PostBadge>
+            {post.frontmatter.pdf.map((pdf, i) => (
+              <ButtonModalPdf key={i} pdfAlt={pdf.alt} pdfUrl={pdf.url}/>
+            ))}
+          </S.PostBadge>
           <RecomendPosts next={next} previous={previous} />
         </DivPost>
         <SectionNoticias />
