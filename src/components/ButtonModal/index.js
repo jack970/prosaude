@@ -35,4 +35,20 @@ const ButtonModalPdf = ({pdfUrl, pdfAlt}) => {
     )
 }
 
-export default ButtonModalPdf
+const OpenModalButton = ({pdfGenerator}) => {
+    return(
+        <div>
+            {
+            pdfGenerator && pdfGenerator.length > 0 && (
+            <div>Baixar PDF: &nbsp;
+                {pdfGenerator.map((pdf, i) => (
+                <ButtonModalPdf key={i} pdfAlt={pdf.alt} pdfUrl={pdf.url}/>
+                ))}
+            </div>
+            )
+            }
+        </div>
+    )
+}
+
+export default OpenModalButton

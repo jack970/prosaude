@@ -9,6 +9,7 @@ import SectionNoticias from "../components/Cards/AllNoticiasSection"
 import kebabCase from "lodash/kebabCase"
 import media from "styled-media-query"
 import ButtonModalPdf from "../components/ButtonModal"
+import OpenModalButton from "../components/ButtonModal"
 
 export const Divisao = styled.div`
   display: flex;
@@ -55,15 +56,7 @@ const BlogPost = ({ data, pageContext }) => {
           </S.MainContent>
           <S.PostBadge>
           <S.PostBadge>
-            {
-                post.frontmatter.pdf && post.frontmatter.pdf > 0 && (
-                <div>Baixar PDF: &nbsp;
-                    {post.frontmatter.pdf.map((pdf, i) => (
-                    <ButtonModalPdf key={i} pdfAlt={pdf.alt} pdfUrl={pdf.url}/>
-                    ))}
-                </div>
-                )
-            }
+            <OpenModalButton pdfGenerator={post.frontmatter.pdf} />
           </S.PostBadge>
           </S.PostBadge>
           <RecomendPosts next={next} previous={previous} />
