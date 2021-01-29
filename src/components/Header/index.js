@@ -2,6 +2,7 @@ import React from "react"
 import InputSearch from "../Search"
 import HeaderMenu from "./HeaderMenu"
 import * as S from "./styled"
+import MenuMobile from './MenuMobile'
 
 const Header = ({ title, description, menu }) => {
   return (
@@ -11,6 +12,9 @@ const Header = ({ title, description, menu }) => {
           <S.HeaderTitle>{title}</S.HeaderTitle>
           <S.HeaderDescription>{description}</S.HeaderDescription>
         </S.HeaderLogo>
+        <div id="mobile">
+          <MenuMobile links={menu} className=".mobile" />
+        </div>
         <S.HeaderMenuContents>
           <HeaderMenu menu={menu} />
           <InputSearch />

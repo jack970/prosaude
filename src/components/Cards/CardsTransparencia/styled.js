@@ -1,5 +1,6 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const CardTransparenciaRow = styled.div`
     display: flex;
@@ -28,6 +29,11 @@ export const CardTransparenciaTitle = styled.h1`
 export const CardTransparenciaLink = styled(Link)`
     margin: .5rem 1rem;
     width: 46%;
+
+    ${media.lessThan("large")`
+        width: 100%;
+    
+    `}
 `
 
 export const CardTransparenciaDescription = styled.p`
