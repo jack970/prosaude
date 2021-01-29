@@ -54,9 +54,17 @@ const BlogPost = ({ data, pageContext }) => {
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
           </S.MainContent>
           <S.PostBadge>
-            {post.frontmatter.pdf.map((pdf, i) => (
-              <ButtonModalPdf key={i} pdfAlt={pdf.alt} pdfUrl={pdf.url}/>
-            ))}
+          <S.PostBadge>
+            {
+                post.frontmatter.pdf && post.frontmatter.pdf > 0 && (
+                <div>Baixar PDF: &nbsp;
+                    {post.frontmatter.pdf.map((pdf, i) => (
+                    <ButtonModalPdf key={i} pdfAlt={pdf.alt} pdfUrl={pdf.url}/>
+                    ))}
+                </div>
+                )
+            }
+          </S.PostBadge>
           </S.PostBadge>
           <RecomendPosts next={next} previous={previous} />
         </DivPost>

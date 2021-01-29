@@ -28,11 +28,11 @@ collections:
     create: true # Allow users to create new documents in this collection
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template i.e. title.md
     fields:
+    - {label: "Tags", name: "tags", widget: "list", default: ["Notícias"], max: 3, min: 1}
+    - {label: "Data", name: "date", widget: "datetime", format: 'YYYY-MM-DD hh:mm:ss'}
     - {label: "Título", name: "title", widget: "string"}
     - {label: "Descrição", name: "description", widget: "string"}
     - {label: "Imagem da Notícia", name: "image", widget: "image"}
-    - {label: "Tags", name: "tags", widget: "list", default: ["Notícias"], max: 3, min: 1}
-    - {label: "Data", name: "date", widget: "datetime", format: 'YYYY-MM-DD hh:mm:ss'}
     - name: pdf
       label: "PDF"
       widget: list

@@ -20,6 +20,7 @@ const CardsPub = () => {
               date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
               description
               title
+              image
             }
             excerpt(pruneLength: 50)
           }
@@ -34,10 +35,11 @@ const CardsPub = () => {
         {cardsPub.map(({ node }, i) => (
           <Cards
             key={i}
-            title={node.fronttmatter.title}
-            description={node.fronttmatter.description}
+            image={node.frontmatter.image}
+            title={node.frontmatter.title}
+            description={node.frontmatter.description}
             slug={node.fields.slug}
-            date={node.fronttmatter.date}
+            date={node.frontmatter.date}
           />
         ))}
     </CardsSection>

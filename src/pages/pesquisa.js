@@ -45,7 +45,7 @@ const SearchPage = ({data, location}) => {
               )
             })
           ) : (
-           "NAda Encontrado"
+           "Nada Encontrado"
           )}
     </CardsSection>
   </Layout>
